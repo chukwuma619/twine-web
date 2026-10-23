@@ -24,7 +24,7 @@ export function DownloadPanel({
 
   if (files.length === 0) {
     return (
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="flex flex-col items-start gap-3">
         <p className="text-lg leading-7 text-[#5c5468]">
           Downloads are not published yet.
         </p>
@@ -44,7 +44,7 @@ export function DownloadPanel({
   ) {
     const file = files[0];
     return (
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="flex flex-col items-start gap-3">
         <DownloadLink file={file} />
         <p className="text-sm text-[#5c5468]">{fileDetail(file)}</p>
         <p className="max-w-md text-sm leading-6 text-[#5c5468]">
@@ -59,7 +59,7 @@ export function DownloadPanel({
 
   if (platform === "ios") {
     return (
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="flex flex-col items-start gap-3">
         <p className="max-w-md text-lg leading-7 text-[#5c5468]">
           Twine is not available for iPhone or iPad.
         </p>
@@ -70,7 +70,7 @@ export function DownloadPanel({
 
   if (platform === "other") {
     return (
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="flex flex-col items-start gap-3">
         <DownloadChoices files={files} />
         <p className="text-sm text-[#5c5468]">
           Not available for iPhone or iPad.
@@ -82,7 +82,7 @@ export function DownloadPanel({
   const file = byPlatform.get(platform);
   if (!file) {
     return (
-      <div className="mt-10 flex flex-col items-start gap-3">
+      <div className="flex flex-col items-start gap-3">
         <p className="max-w-md text-lg leading-7 text-[#5c5468]">
           The {platformName(platform)} download is not published yet.
         </p>
@@ -97,7 +97,7 @@ export function DownloadPanel({
   const others = files.filter((item) => item.platform !== platform);
 
   return (
-    <div className="mt-10 flex flex-col items-start gap-3">
+    <div className="flex flex-col items-start gap-3">
       <DownloadLink file={file} />
       <p className="text-sm text-[#5c5468]">{fileDetail(file)}</p>
       <p className="max-w-md text-sm leading-6 text-[#5c5468]">

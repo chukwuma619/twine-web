@@ -13,16 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Twine",
+  title: "Twine — Buy and sell CKB person to person",
   description:
-    "Buy and sell CKB person to person. Fiat moves outside the app. CKB stays in your Fiber wallet.",
+    "Pay another person by bank transfer or Zelle. CKB stays in their Fiber wallet until they release it. Twine never holds the coins or the cash.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
