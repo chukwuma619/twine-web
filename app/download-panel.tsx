@@ -22,7 +22,40 @@ export function DownloadPanel({
 }) {
   const platform = useVisitorPlatform(initialPlatform);
 
+  if (files.length === 0) {
+    return (
+      <div className="mt-10 flex flex-col items-start gap-3">
+        <p className="text-lg leading-7 text-[#5c5468]">
+          Downloads are not published yet.
+        </p>
+        <p className="text-sm text-[#5c5468]">
+          Not available for iPhone or iPad.
+        </p>
+      </div>
+    );
+  }
+
   const byPlatform = new Map(files.map((file) => [file.platform, file]));
+
+  if (
+    platform !== "ios" &&
+    files.length === 1 &&
+    files[0].platform === "macos"
+  ) {
+    const file = files[0];
+    return (
+      <div className="mt-10 flex flex-col items-start gap-3">
+        <DownloadLink file={file} />
+        <p className="text-sm text-[#5c5468]">{fileDetail(file)}</p>
+        <p className="max-w-md text-sm leading-6 text-[#5c5468]">
+          {installHint(file.platform)}
+        </p>
+        <p className="text-sm text-[#5c5468]">
+          Not available for iPhone or iPad.
+        </p>
+      </div>
+    );
+  }
 
   if (platform === "ios") {
     return (
@@ -193,7 +226,7 @@ function requirement(platform: DownloadPlatform): string {
     case "android":
       return "Android 7 or newer";
     case "macos":
-      return "Apple silicon, macOS 12 or newer";
+      return "macOS 12 or newer";
     case "windows":
       return "Windows 10 or 11";
     case "linux":
