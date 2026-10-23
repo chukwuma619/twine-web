@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Twine — Buy and sell CKB person to person",
+  title: "Twine — Non-custodial P2P for Nervos CKB on Nostr and Fiber",
   description:
-    "Pay another person by bank transfer or Zelle. CKB stays in their Fiber wallet until they release it. Twine never holds the coins or the cash.",
+    "Twine is a non-custodial peer-to-peer (P2P) desk for buying and selling CKB with local fiat. Orders, encrypted chat, and trade actions run over Nostr.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

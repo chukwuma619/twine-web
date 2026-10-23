@@ -35,20 +35,24 @@ export default async function Home() {
           <section className="py-16 sm:py-24">
             <p className="text-sm font-medium text-[#3c245c]">Twine</p>
             <h1 className="mt-4 max-w-3xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-[#1a1423] sm:text-6xl">
-              Buy and sell CKB, person to person.
+              Non-custodial P2P for Nervos CKB on Nostr and Fiber.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-[#5c5468]">
-              A seller lists coins. You pay them by bank transfer or Zelle. The
-              CKB stays in their Fiber wallet until they see the money and
-              release it to you.
+              Twine is a non-custodial peer-to-peer (P2P) desk for buying and
+              selling CKB with local fiat. Orders, encrypted chat, and trade
+              actions run over Nostr.
             </p>
-            <p className="mt-4 max-w-xl text-base leading-7 text-[#5c5468]">
-              <External href="https://www.nervos.org/">CKB</External> is the
-              Nervos coin. <External href="https://www.fiber.world/">Fiber</External>{" "}
-              is the wallet it moves through. Twine is the desk: it keeps the
-              listing and walks both people through the trade. Your coins and
-              your cash stay between the two of you.
-            </p>
+            <div className="mt-8 max-w-xl border-l-2 border-[#3c245c] pl-5">
+              <p className="text-lg leading-7 font-medium text-[#1a1423]">
+                Twine never holds the fiat, and it never holds a key that can
+                spend the locked CKB.
+              </p>
+              <p className="mt-2 text-sm leading-6 text-[#5c5468]">
+                If a trade fails or times out, Fiber&apos;s timelock returns the
+                CKB to the seller&apos;s channel. If a buyer cannot receive yet,
+                Twine opens a channel to them at payout.
+              </p>
+            </div>
             <div id="download" className="scroll-mt-20 mt-10">
               <Suspense fallback={<DownloadFallback />}>
                 <DeviceDownload files={files} />
@@ -106,17 +110,17 @@ export default async function Home() {
 
           <Section id="coins" kicker="The coins" title="Who holds the money">
             <p className="mt-5 max-w-2xl text-lg leading-8 text-[#5c5468]">
-              Twine coordinates the listing and the steps. The naira or dollars
-              go from the buyer to the seller. The CKB stays in the seller&apos;s
-              Fiber channel until release.
+              Twine coordinates the order book and a dispute. It never holds the
+              fiat, and it never holds a key that can spend the locked CKB. If a
+              trade fails or times out, Fiber&apos;s timelock returns the CKB to
+              the seller&apos;s channel.
             </p>
             <p className="mt-4 max-w-2xl leading-7 text-[#5c5468]">
               The buyer creates a secret on their own Fiber node, and an invoice
               locked to it. Twine copies that lock onto the seller&apos;s hold
               and stores no secret. Paying the buyer&apos;s invoice is what
               reveals it, and that same secret settles the hold. Twine can
-              finish the lock only by paying the buyer first. If the trade never
-              finishes, Fiber returns the CKB to the seller.
+              finish the lock only by paying the buyer first.
             </p>
 
             <div className="mt-10 max-w-2xl border-l-2 border-[#3c245c] pl-5">
