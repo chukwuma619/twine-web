@@ -133,12 +133,11 @@ export default async function Home() {
 
             <div className="mt-10 max-w-2xl border-l-2 border-[#3c245c] pl-5">
               <p className="font-medium text-[#1a1423]">
-                One hour to lock. Fifteen minutes to pay. Thirty-six hours on
-                the hold.
+                One hour to lock. Thirty-six hours on the hold.
               </p>
               <ul className="mt-3 flex flex-col gap-2 text-sm leading-6 text-[#5c5468]">
                 <li>The seller has 1 hour to lock the coins. After that, the listing is free again.</li>
-                <li>Once the coins are locked, the buyer has 15 minutes to pay and mark it sent.</li>
+                <li>Once the coins are locked, the buyer can pay and mark it sent until 30 minutes before the hold ends.</li>
                 <li>
                   The hold lasts 36 hours. A release has to start at least 30
                   minutes before it ends. A dispute does not pause it.
