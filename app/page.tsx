@@ -103,17 +103,13 @@ export default async function Home() {
             </ol>
 
             <h3 className="mt-14 text-lg font-medium text-[#1a1423]">
-              Ways to pay
+              How you pay
             </h3>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5c5468]">
-              The app reads the payment list from the desk you connect to. The
-              desk that ships with the app accepts these two. You send the
-              transfer yourself. Twine only stores the method&apos;s name.
+              The seller writes the account details on the trade and sends
+              them. The buyer sees that text and pays it outside Twine. The
+              listing does not name a bank.
             </p>
-            <ul className="mt-4 max-w-2xl divide-y divide-[#1a1423]/10 border-y border-[#1a1423]/10">
-              <Pay method="GTBank" detail="Naira, by bank transfer" />
-              <Pay method="Zelle" detail="Dollars" />
-            </ul>
           </Section>
 
           <Section id="coins" kicker="The coins" title="Who holds the money">
@@ -232,11 +228,11 @@ const navLink =
 const tradeSteps = [
   {
     title: "Post",
-    body: "A seller lists CKB: a price, how much is for sale, a minimum and maximum, and a payment method. Account numbers are not part of the listing.",
+    body: "A seller lists CKB: a price, how much is for sale, and a minimum and maximum. Account details are not part of the listing.",
   },
   {
     title: "Take",
-    body: "A buyer names a fiat amount, their Fiber node, one payment method, and the invoice that should receive the CKB. The secret behind that invoice stays on the buyer's node.",
+    body: "A buyer names a fiat amount, their Fiber node, and the invoice that should receive the CKB. The secret behind that invoice stays on the buyer's node.",
   },
   {
     title: "Lock",
@@ -244,7 +240,7 @@ const tradeSteps = [
   },
   {
     title: "Pay",
-    body: "The seller shares their account in the encrypted chat. The buyer sends the money outside Twine, uploads a receipt, and marks it sent.",
+    body: "The seller writes the account details and sends them. The buyer sees that text, sends the money outside Twine, uploads a receipt, and marks it sent.",
   },
   {
     title: "Release",
@@ -309,11 +305,11 @@ const questions: { q: string; a: string }[] = [
   },
   {
     q: "What if I lock coins and they never pay?",
-    a: "You do not release. Fifteen minutes after the lock, the trade starts returning your CKB. Fiber completes that return when the hold ends.",
+    a: "You do not release. The hold returns your CKB when it ends. A release has to start at least 30 minutes before then.",
   },
   {
     q: "What moves inside Twine?",
-    a: "The listing, the steps, and the chat. The money moves on GTBank or Zelle. The CKB moves on Fiber, between wallets you and the other person control.",
+    a: "The listing, the steps, and the chat. The money moves however the seller asked to be paid. The CKB moves on Fiber, between wallets you and the other person control.",
   },
 ];
 
@@ -386,15 +382,6 @@ function Step({
         <h3 className="leading-6 font-medium text-[#1a1423]">{title}</h3>
         <p className="mt-1 text-sm leading-6 text-[#5c5468]">{body}</p>
       </div>
-    </li>
-  );
-}
-
-function Pay({ method, detail }: { method: string; detail: string }) {
-  return (
-    <li className="flex items-baseline justify-between gap-6 py-4">
-      <span className="font-medium text-[#1a1423]">{method}</span>
-      <span className="text-sm text-[#5c5468]">{detail}</span>
     </li>
   );
 }
