@@ -305,7 +305,7 @@ const questions: { q: string; a: string }[] = [
   },
   {
     q: "What if I lock coins and they never pay?",
-    a: "You do not release. The hold returns your CKB when it ends. A release has to start at least 30 minutes before then.",
+    a: "You do not release. The hold returns your CKB when it ends.",
   },
   {
     q: "What moves inside Twine?",
