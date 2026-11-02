@@ -23,7 +23,13 @@ type ReleaseResponse = {
 
 export async function latestDownloads(): Promise<DownloadFile[]> {
   "use cache";
-  cacheLife("hours");
+  // A release should show up within a few minutes. An hour-long cache kept
+  // the previous build on the site after GitHub already had a newer one.
+  cacheLife({
+    stale: 60,
+    revalidate: 60 * 5,
+    expire: 60 * 60,
+  });
 
   const published = await publishedDownloads();
   if (published.length > 0) {
