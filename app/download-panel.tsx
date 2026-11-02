@@ -245,9 +245,9 @@ function installHint(platform: DownloadPlatform): string {
     case "macos":
       return "Open the disk image and drag Twine into Applications. Right-click the app and choose Open.";
     case "windows":
-      return "Unzip the whole folder and run twine_app.exe from inside it. If Windows asks, choose More info, then Run anyway.";
+      return "Unzip the whole folder and run twine.exe from inside it. If Windows asks, choose More info, then Run anyway.";
     case "linux":
-      return "Unpack the archive and run ./Twine/twine_app. A desktop install needs GTK 3 and a keyring.";
+      return "Unpack the archive and run ./Twine/twine. A desktop install needs GTK 3 and a keyring.";
     default: {
       const unreachable: never = platform;
       return unreachable;
