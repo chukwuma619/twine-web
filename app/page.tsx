@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { DeviceDownload } from "./device-download";
 import { latestDownloads } from "./releases";
+import { TwineLogo } from "./twine-logo";
 
 const textLink =
   "font-medium text-[#3c245c] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#3c245c]";
@@ -13,7 +14,11 @@ export default async function Home() {
     <>
       <header className="sticky top-0 z-10 border-b border-[#1a1423]/10 bg-[#f3efe6]">
         <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-6">
-          <a href="#top" className="font-medium tracking-tight text-[#1a1423]">
+          <a
+            href="#top"
+            className="flex items-center gap-2 font-medium tracking-tight text-[#1a1423]"
+          >
+            <TwineLogo className="size-6 text-[#3c245c]" />
             Twine
           </a>
           <nav aria-label="On this page" className="flex items-center gap-5 text-sm">
@@ -33,7 +38,10 @@ export default async function Home() {
       <main id="top" className="flex-1">
         <div className="mx-auto w-full max-w-5xl px-6">
           <section className="py-16 sm:py-24">
-            <p className="text-sm font-medium text-[#3c245c]">Twine</p>
+            <p className="flex items-center gap-2 text-sm font-medium text-[#3c245c]">
+              <TwineLogo className="size-4" />
+              Twine
+            </p>
             <h1 className="mt-4 max-w-3xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-[#1a1423] sm:text-6xl">
               Non-custodial P2P for Nervos CKB on Nostr and Fiber.
             </h1>
