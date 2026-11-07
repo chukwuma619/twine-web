@@ -263,7 +263,7 @@ const coinRows = [
   },
   {
     label: "A failed payout",
-    body: "If the CKB cannot reach the buyer, the hold stays locked. The buyer sends a new invoice under the same secret, and Twine tries again.",
+    body: "If the CKB cannot reach the buyer, the hold stays locked. The buyer brings the wallet online and pastes the same invoice again. An invoice that expires first cannot be replaced, and the hold returns the CKB to the seller.",
   },
   {
     label: "A dispute",
