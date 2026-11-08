@@ -267,7 +267,7 @@ const coinRows = [
   },
   {
     label: "A dispute",
-    body: "Either person can open one while the coins are locked, when that desk has a solver. Sharing the chat key lets the solver read the thread. The seller can still release. The solver can pay the buyer, or let the hold expire and return the CKB to the seller.",
+    body: "Either person can open one while the coins are locked, when that desk has a solver. The app seals this trade's chat to the solver, so the solver can read it and the desk cannot. The seller can still release. The solver can pay the buyer, or let the hold expire and return the CKB to the seller.",
   },
   {
     label: "Fees",
