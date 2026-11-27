@@ -1,13 +1,139 @@
 @import "tailwindcss";
 
+/*
+  Twine desk, Material 3 light scheme.
+
+  Primary is indigo ink (hue 264, chroma 48). It is the brand, the links,
+  and the filled action. It is not green, amber, or red, so those stay
+  free for the state of a trade.
+
+  Tertiary is settled: the CKB was released. Same green the app already
+  uses for a finished trade. Error is a dispute. Warning is a clock.
+  Warning is an extension; Material 3 has no warning role.
+
+  Neutrals are warm paper, taken from the cream already on this site
+  (hue 109, chroma 4; variant chroma 8). Tones are the Material 3 light
+  mapping: 40 for a role, 100 for ink on it, 90 / 10 for a container,
+  98 for the page.
+*/
+
 :root {
-  --background: #f3efe6;
-  --foreground: #1a1423;
+  --primary: #2c5da7;
+  --on-primary: #ffffff;
+  --primary-container: #d7e2ff;
+  --on-primary-container: #001b3f;
+  --primary-fixed: #d7e2ff;
+  --primary-fixed-dim: #abc7ff;
+  --on-primary-fixed: #001b3f;
+  --on-primary-fixed-variant: #04458e;
+  --inverse-primary: #abc7ff;
+  --primary-hover: color-mix(in srgb, var(--on-primary) 8%, var(--primary));
+  --primary-pressed: color-mix(in srgb, var(--on-primary) 12%, var(--primary));
+
+  --secondary: #565e71;
+  --on-secondary: #ffffff;
+  --secondary-container: #dae2f9;
+  --on-secondary-container: #131c2b;
+  --secondary-fixed: #dae2f9;
+  --secondary-fixed-dim: #bec6dc;
+  --on-secondary-fixed: #131c2b;
+  --on-secondary-fixed-variant: #3e4759;
+
+  --tertiary: #006d41;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #98f6bc;
+  --on-tertiary-container: #002110;
+  --tertiary-fixed: #98f6bc;
+  --tertiary-fixed-dim: #7cd9a1;
+  --on-tertiary-fixed: #002110;
+  --on-tertiary-fixed-variant: #00522f;
+
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #410002;
+
+  --warning: #865300;
+  --on-warning: #ffffff;
+  --warning-container: #ffddb8;
+  --on-warning-container: #2b1700;
+
+  --surface: #fdf9f0;
+  --surface-dim: #dddad1;
+  --surface-bright: #fdf9f0;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f7f3ea;
+  --surface-container: #f1ede5;
+  --surface-container-high: #ece8df;
+  --surface-container-highest: #e6e2d9;
+  --on-surface: #1c1c16;
+  --inverse-surface: #31302b;
+  --inverse-on-surface: #f4f0e7;
+  --surface-variant: #e6e3d1;
+  --on-surface-variant: #48473a;
+  --outline: #797769;
+  --outline-variant: #cac7b6;
+  --surface-tint: var(--primary);
+
+  --background: var(--surface);
+  --foreground: var(--on-surface);
+  color-scheme: light;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+  --color-inverse-primary: var(--inverse-primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-warning: var(--warning);
+  --color-on-warning: var(--on-warning);
+  --color-warning-container: var(--warning-container);
+  --color-on-warning-container: var(--on-warning-container);
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-surface-tint: var(--surface-tint);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,4 +142,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
+}
+
+::selection {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
 }

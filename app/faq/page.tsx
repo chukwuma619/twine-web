@@ -15,7 +15,7 @@ export default function Faq() {
       title="Before you download"
       lede="Short answers. The trade itself is on How it works, and the hold is on Security."
     >
-      <div className="border-t border-[#1a1423]/10 py-16 sm:py-20">
+      <div className="border-t border-outline-variant py-16 sm:py-20">
         <FaqList items={questions} />
       </div>
     </Article>

@@ -22,7 +22,7 @@ export default function Disclaimer() {
       title="What this software is"
       lede="Twine is a tool for two people to trade CKB. It is not a custodian, an exchange account, or a payment processor."
     >
-      <div className="flex max-w-2xl flex-col gap-5 border-t border-[#1a1423]/10 py-16 text-sm leading-7 text-[#5c5468] sm:py-20">
+      <div className="flex max-w-2xl flex-col gap-5 border-t border-outline-variant py-16 text-sm leading-7 text-on-surface-variant sm:py-20">
         {paragraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}

@@ -12,8 +12,8 @@ const pages = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-[#1a1423]/10">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10 text-sm leading-6 text-[#5c5468] sm:flex-row sm:items-start sm:justify-between">
+    <footer className="border-t border-outline-variant">
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 py-10 text-sm leading-6 text-on-surface-variant sm:flex-row sm:items-start sm:justify-between">
         <p className="max-w-sm">
           Orders are public Nostr events. The coordinator is open source, so
           anyone can run a desk. The app ships with one already filled in.

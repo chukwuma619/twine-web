@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 
 export const textLink =
-  "font-medium text-[#3c245c] underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#3c245c]";
+  "font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary";
 
 export const navLink =
-  "text-[#5c5468] underline-offset-4 hover:text-[#1a1423] hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-[#3c245c]";
+  "text-on-surface-variant underline-offset-4 hover:text-on-surface hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary";
 
 export function Article({
   kicker,
@@ -21,11 +21,11 @@ export function Article({
     <main className="flex-1">
       <div className="mx-auto w-full max-w-5xl px-6">
         <header className="max-w-3xl py-16 sm:py-20">
-          <p className="text-sm font-medium text-[#3c245c]">{kicker}</p>
-          <h1 className="mt-3 text-4xl leading-tight font-semibold tracking-tight text-pretty text-[#1a1423] sm:text-5xl">
+          <p className="text-sm font-medium text-primary">{kicker}</p>
+          <h1 className="mt-3 text-4xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-5xl">
             {title}
           </h1>
-          <p className="mt-5 text-lg leading-8 text-[#5c5468]">{lede}</p>
+          <p className="mt-5 text-lg leading-8 text-on-surface-variant">{lede}</p>
         </header>
         {children}
       </div>
@@ -47,16 +47,16 @@ export function Section({
   return (
     <section
       id={id}
-      className="scroll-mt-20 border-t border-[#1a1423]/10 py-16 sm:py-20"
+      className="scroll-mt-20 border-t border-outline-variant py-16 sm:py-20"
     >
       {kicker ? (
-        <p className="text-sm font-medium text-[#3c245c]">{kicker}</p>
+        <p className="text-sm font-medium text-primary">{kicker}</p>
       ) : null}
       <h2
         className={
           kicker
-            ? "mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-[#1a1423] sm:text-4xl"
-            : "max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-[#1a1423] sm:text-4xl"
+            ? "mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-4xl"
+            : "max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-4xl"
         }
       >
         {title}
@@ -79,12 +79,12 @@ export function Role({
     <div
       className={
         divided
-          ? "border-t border-[#1a1423]/10 pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-10"
+          ? "border-t border-outline-variant pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-10"
           : "md:pr-10"
       }
     >
-      <h3 className="font-medium text-[#1a1423]">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-[#5c5468]">{children}</p>
+      <h3 className="font-medium text-on-surface">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-on-surface-variant">{children}</p>
     </div>
   );
 }
@@ -103,12 +103,12 @@ export function Step({
   return (
     <li className="grid grid-cols-[2.25rem_1fr]">
       <div className="flex flex-col items-center">
-        <span className="font-mono text-sm leading-6 text-[#3c245c]">{n}</span>
-        {last ? null : <span className="my-2 w-px flex-1 bg-[#1a1423]/15" />}
+        <span className="font-mono text-sm leading-6 text-primary">{n}</span>
+        {last ? null : <span className="my-2 w-px flex-1 bg-outline-variant" />}
       </div>
       <div className={last ? undefined : "pb-8"}>
-        <h3 className="leading-6 font-medium text-[#1a1423]">{title}</h3>
-        <p className="mt-1 text-sm leading-6 text-[#5c5468]">{body}</p>
+        <h3 className="leading-6 font-medium text-on-surface">{title}</h3>
+        <p className="mt-1 text-sm leading-6 text-on-surface-variant">{body}</p>
       </div>
     </li>
   );
@@ -145,32 +145,47 @@ export function External({ href, children }: { href: string; children: ReactNode
 export function Callout({
   children,
   className = "",
+  tone = "primary",
 }: {
   children: ReactNode;
   className?: string;
+  tone?: "primary" | "warning";
 }) {
   return (
-    <div className={`max-w-2xl border-l-2 border-[#3c245c] pl-5 ${className}`}>
+    <div className={`max-w-2xl rounded-xl px-5 py-4 ${calloutTone(tone)} ${className}`}>
       {children}
     </div>
   );
 }
 
+function calloutTone(tone: "primary" | "warning"): string {
+  switch (tone) {
+    case "primary":
+      return "bg-primary-container text-on-primary-container";
+    case "warning":
+      return "bg-warning-container text-on-warning-container";
+    default: {
+      const unreachable: never = tone;
+      return unreachable;
+    }
+  }
+}
+
 export function FaqList({ items }: { items: { q: string; a: ReactNode }[] }) {
   return (
-    <div className="max-w-2xl divide-y divide-[#1a1423]/10 border-y border-[#1a1423]/10">
+    <div className="max-w-2xl divide-y divide-outline-variant border-y border-outline-variant">
       {items.map((item) => (
         <details key={item.q} className="group py-4">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-sm font-medium text-[#1a1423] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3c245c] [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-sm font-medium text-on-surface focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary [&::-webkit-details-marker]:hidden">
             {item.q}
             <span
               aria-hidden
-              className="mt-0.5 font-mono text-[#3c245c] transition-transform duration-150 ease-out group-open:rotate-45"
+              className="mt-0.5 font-mono text-primary transition-transform duration-150 ease-out group-open:rotate-45"
             >
               +
             </span>
           </summary>
-          <div className="mt-3 max-w-xl text-sm leading-6 text-[#5c5468]">
+          <div className="mt-3 max-w-xl text-sm leading-6 text-on-surface-variant">
             {item.a}
           </div>
         </details>
