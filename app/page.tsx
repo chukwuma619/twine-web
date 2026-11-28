@@ -76,27 +76,11 @@ export default function Home() {
               trade actions run over Nostr. The seller locks the coins in
               their own Fiber channel.
             </p>
-            <Alert className="mt-8 max-w-xl px-4 py-4">
-              <AlertTitle className="text-lg leading-7">
-                Twine never holds the fiat, and it never holds a key that can
-                spend the locked CKB.
-              </AlertTitle>
-              <AlertDescription className="text-sm leading-6">
-                If a trade does not finish, Fiber&apos;s timelock returns the
-                CKB to the seller&apos;s channel.
-              </AlertDescription>
-            </Alert>
             <div className="mt-10">
-              <Button>Download</Button>
+              <Link href="/download">
+                <Button>Download</Button>
+              </Link>
             </div>
-            <Button
-              variant="link"
-              nativeButton={false}
-              render={<a href="#trade" />}
-              className="mt-4 h-auto px-0"
-            >
-              How a trade moves
-            </Button>
           </div>
           <HeroScene />
         </section>
