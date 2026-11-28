@@ -18,6 +18,8 @@ import { BrandWordmark } from "./brand-wordmark";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#why", label: "Why Twine" },
   { href: "/download", label: "Download" },
 ];
 

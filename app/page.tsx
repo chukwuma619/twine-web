@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { cn } from "cn";
 import { CoinMark, HeroScene, KeyMark, NoteMark } from "../components/illustrations";
 import { TradeStory } from "../components/trade-story";
+import { WhyTwine } from "../components/why-twine";
 import { Button } from "@/components/ui/button";
 
 const tradeSteps = [
@@ -45,6 +46,25 @@ const limits: { title: string; body: string; good?: boolean }[] = [
   {
     title: "The order book is in the app",
     body: "This site explains the desk and hosts the download. It does not list live orders.",
+  },
+];
+
+const howItWorks: { title: string; body: string }[] = [
+  {
+    title: "Get the app",
+    body: "The app stores a Nostr key on your device. That key posts listings and signs each step. There is no username and no separate signup.",
+  },
+  {
+    title: "Post or take a listing",
+    body: "A seller names a price, a currency, and how much CKB is for sale, plus a minimum and a maximum. A buyer takes an amount inside those limits.",
+  },
+  {
+    title: "Lock the coins, pay the person",
+    body: "The seller locks CKB from their own Fiber wallet. Account details arrive in the encrypted chat. The buyer pays that account outside Twine.",
+  },
+  {
+    title: "Release",
+    body: "The seller checks the money and releases. Twine pays the buyer's invoice, the hold settles, and the buyer receives the CKB.",
   },
 ];
 
@@ -103,6 +123,39 @@ export default function Home() {
           <HeroScene />
         </section>
 
+        <section id="how" className="section">
+          <p className="eyebrow">How it works</p>
+          <h2 className="section-title">Four steps. The coins stay in Fiber.</h2>
+          <p className="lede mt-5">
+            Orders and trade actions run over Nostr. CKB moves on Fiber, in
+            wallets the traders control. Fiat moves outside the app.
+          </p>
+          <ol className="mt-12 grid gap-px border border-rule bg-rule sm:grid-cols-2">
+            {howItWorks.map((step, index) => (
+              <li key={step.title} className="bg-cloth px-6 py-8 sm:px-8">
+                <p className="font-mono text-xs tracking-wide text-cord" aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-4 font-sans text-lg font-semibold tracking-tight">
+                  {step.title}
+                </h3>
+                <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-ink-soft">
+                  {step.body}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8">
+            <Link href="#trade" className="text-link">
+              See a trade, step by step
+            </Link>
+          </p>
+        </section>
+      </div>
+
+      <WhyTwine />
+
+      <div className="shell">
         <section className="section">
           <p className="eyebrow">The desk</p>
           <h2 className="section-title">Three things stay outside Twine.</h2>

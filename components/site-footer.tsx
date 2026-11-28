@@ -6,6 +6,8 @@ const footerLink =
 
 const pages = [
   { href: "/", label: "Home" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#why", label: "Why Twine" },
   { href: "/download", label: "Download" },
 ];
 
