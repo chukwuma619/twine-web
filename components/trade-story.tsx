@@ -60,17 +60,17 @@ export function TradeStory({
           {steps.map((step, index) => (
             <span
               key={step.title}
-              className={`h-1 flex-1 rounded-full ${index === active ? "bg-highlight" : index < active ? "bg-primary" : "bg-grain"}`}
+              className={`h-0.5 flex-1 ${index === active ? "bg-cord" : index < active ? "bg-ink" : "bg-strand"}`}
             />
           ))}
         </div>
       </div>
       <div>
-        <div className="sticky top-header z-[1] border-b border-border bg-background/95 py-3 backdrop-blur-sm lg:hidden">
-          <p className="font-mono text-xs text-primary">
+        <div className="sticky top-header z-[1] border-b border-rule bg-cloth/95 py-3 backdrop-blur-sm lg:hidden">
+          <p className="font-mono text-xs font-medium tracking-wide text-cord">
             {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
           </p>
-          <p className="font-medium text-foreground">{current?.title}</p>
+          <p className="font-sans font-semibold tracking-tight text-ink">{current?.title}</p>
         </div>
         <ol className="lg:mt-2">
           {steps.map((step, index) => (
@@ -84,17 +84,19 @@ export function TradeStory({
             >
               <div className="flex flex-col items-center">
                 <span
-                  className={`font-mono text-sm leading-6 ${index === active ? "text-primary" : "text-muted-foreground"}`}
+                  className={`font-mono text-sm leading-6 ${index === active ? "text-cord" : "text-ink-soft"}`}
                 >
                   {index + 1}
                 </span>
                 {index === steps.length - 1 ? null : (
-                  <span className="my-2 w-px flex-1 bg-grain" />
+                  <span className="my-2 w-px flex-1 bg-strand" />
                 )}
               </div>
               <div className="pb-10">
-                <h3 className="leading-6 font-medium text-foreground">{step.title}</h3>
-                <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
+                <h3 className="font-sans text-xl leading-6 font-semibold tracking-tight text-ink">
+                  {step.title}
+                </h3>
+                <p className="mt-2 max-w-md font-sans text-sm leading-relaxed text-ink-soft">
                   {step.body}
                 </p>
               </div>

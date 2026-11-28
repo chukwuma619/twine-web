@@ -1,16 +1,9 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { cn } from "cn";
-import { questions } from "../components/faq-items";
 import { CoinMark, HeroScene, KeyMark, NoteMark } from "../components/illustrations";
 import { TradeStory } from "../components/trade-story";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
 const tradeSteps = [
   {
@@ -35,13 +28,6 @@ const tradeSteps = [
   },
 ];
 
-const homeQuestions = [
-  "Who am I paying?",
-  "Can Twine spend the locked CKB?",
-  "What if I pay and they don't release?",
-  "Does Twine charge a fee?",
-].flatMap((question) => questions.filter((item) => item.q === question));
-
 const limits: { title: string; body: string; good?: boolean }[] = [
   {
     title: "A Nostr key is the account",
@@ -62,25 +48,55 @@ const limits: { title: string; body: string; good?: boolean }[] = [
   },
 ];
 
+const facts: { title: string; icon: ReactNode; body: string }[] = [
+  {
+    title: "Your key",
+    icon: <KeyMark />,
+    body: "The app stores a Nostr key. That key is the account. The app stores no Fiber key and pays no invoice.",
+  },
+  {
+    title: "The coins",
+    icon: <CoinMark />,
+    body: "The seller locks CKB in their own Fiber channel. Paying the buyer's invoice is what settles the hold.",
+  },
+  {
+    title: "The fiat",
+    icon: <NoteMark />,
+    body: "You pay the other person yourself. Twine shows the account they typed. It does not send the transfer, and it cannot reverse one.",
+  },
+];
+
 export default function Home() {
   return (
     <main id="top" className="flex-1">
       <div className="shell">
-        <section className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
+        <section className="grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:py-24">
           <div>
-            <h1 className="display">Non-custodial P2P for Nervos CKB.</h1>
-            <p className="lede mt-6 max-w-xl">
+            <h1 className="display">
+              <span className="block">Non-custodial</span>
+              <span className="block">P2P for</span>
+              <span className="block">Nervos CKB.</span>
+            </h1>
+            <p className="lede mt-6">
               Buy and sell CKB with local fiat. Orders, encrypted chat, and
               trade actions run over Nostr. The seller locks the coins in
               their own Fiber channel.
             </p>
-            <div className="mt-10">
+            <div className="mt-10 flex flex-wrap items-center gap-3">
               <Button
                 nativeButton={false}
                 render={<Link href="/download" />}
                 size="lg"
               >
                 Download
+              </Button>
+              <Button
+                nativeButton={false}
+                render={<Link href="#trade" />}
+                variant="outline"
+                size="lg"
+              >
+                See a trade
               </Button>
             </div>
           </div>
@@ -90,40 +106,36 @@ export default function Home() {
         <section className="section">
           <p className="eyebrow">The desk</p>
           <h2 className="section-title">Three things stay outside Twine.</h2>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            <Fact title="Your key" icon={<KeyMark />}>
-              The app stores a Nostr key. That key is the account. The app
-              stores no Fiber key and pays no invoice.
-            </Fact>
-            <Fact title="The coins" icon={<CoinMark />}>
-              The seller locks CKB in their own Fiber channel. Paying the
-              buyer&apos;s invoice is what settles the hold.
-            </Fact>
-            <Fact title="The fiat" icon={<NoteMark />}>
-              You pay the other person yourself. Twine shows the account they
-              typed. It does not send the transfer, and it cannot reverse one.
-            </Fact>
-          </div>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            {limits.map((item) => (
-              <Card
-                key={item.title}
-                className={cn(
-                  "rise",
-                  item.good
-                    ? "bg-success-wash ring-success/25"
-                    : "bg-secondary",
-                )}
-              >
-                <CardHeader>
-                  <CardTitle className={item.good ? "text-success" : undefined}>
-                    {item.title}
-                  </CardTitle>
-                  <CardDescription>{item.body}</CardDescription>
-                </CardHeader>
-              </Card>
+          <div className="mt-12 grid border-y border-rule md:grid-cols-3 md:border">
+            {facts.map((fact) => (
+              <Fact key={fact.title} title={fact.title} icon={fact.icon}>
+                {fact.body}
+              </Fact>
             ))}
           </div>
+          <ul className="mt-4">
+            {limits.map((item) => (
+              <li
+                key={item.title}
+                className={cn(
+                  "grid gap-2 border-b border-rule py-6 sm:grid-cols-[16rem_1fr] sm:items-baseline sm:gap-10",
+                  item.good && "border-l-2 border-l-cord pl-4",
+                )}
+              >
+                <h3
+                  className={cn(
+                    "font-sans text-base font-semibold tracking-tight",
+                    item.good && "text-ink",
+                  )}
+                >
+                  {item.title}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed text-ink-soft">
+                  {item.body}
+                </p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section id="trade" className="section">
@@ -137,9 +149,7 @@ export default function Home() {
             remains.
           </p>
           <TradeStory steps={tradeSteps} />
-         
         </section>
-
       </div>
 
       <section className="surface-inverse">
@@ -153,7 +163,7 @@ export default function Home() {
             the seller&apos;s key or the buyer&apos;s secret. Fiat still moves
             between the two traders.
           </p>
-          <p className="mt-8 text-sm leading-6">
+          <p className="mt-8">
             <Link href="/run" className="text-link">
               What a desk runs
             </Link>
@@ -174,12 +184,12 @@ function Fact({
   children: ReactNode;
 }) {
   return (
-    <Card className="rise">
-      <CardHeader>
-        {icon}
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{children}</CardDescription>
-      </CardHeader>
-    </Card>
+    <article className="border-b border-rule py-8 last:border-b-0 md:border-r md:border-b-0 md:px-6 md:last:border-r-0">
+      {icon}
+      <h3 className="mt-5 font-sans text-lg font-semibold tracking-tight">{title}</h3>
+      <p className="mt-2 font-sans text-sm leading-relaxed text-ink-soft">
+        {children}
+      </p>
+    </article>
   );
 }

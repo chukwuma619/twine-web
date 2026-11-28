@@ -16,16 +16,15 @@ function Coin({
         cy={cy}
         r={r}
         fill="var(--background)"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="1.5"
       />
       <circle
         cx={cx}
         cy={cy}
         r={r * 0.45}
-        fill="none"
-        stroke="var(--primary)"
-        strokeWidth="1.5"
+        fill="var(--fiber)"
+        stroke="none"
       />
     </g>
   );
@@ -72,17 +71,17 @@ function Lock({
         height="54"
         rx="12"
         fill="var(--background)"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="1.5"
       />
       <path
         d={open ? "M16 22 V8 a18 18 0 0 1 36 0" : "M16 22 V8 a18 18 0 0 1 36 0 V22"}
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
-      <circle cx="34" cy="48" r="3.5" fill="var(--primary)" />
+      <circle cx="34" cy="48" r="3.5" fill="var(--fiber)" />
     </g>
   );
 }
@@ -138,7 +137,7 @@ function ListingCard({
         y={y}
         width={width}
         height="104"
-        rx="14"
+        rx="6"
         fill="var(--background)"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -177,17 +176,17 @@ export function HeroScene() {
       aria-label="CKB sits in a Fiber hold between the seller and the buyer. Fiat moves outside that hold."
       className="h-auto w-full text-foreground"
     >
-      <rect width="640" height="520" rx="28" fill="var(--linen-3)" />
+      <rect width="640" height="520" rx="8" fill="var(--cloth-3)" />
       <rect
         x="36"
         y="36"
         width="568"
         height="268"
-        rx="20"
+        rx="6"
         fill="var(--background)"
         stroke="var(--border)"
       />
-      <text x="56" y="68" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
+      <text x="56" y="68" fontSize="13" fontFamily={sans} fill="var(--fiber-ink)">
         Fiber
       </text>
       <Party cx={128} cy={176} label="Seller" />
@@ -196,7 +195,7 @@ export function HeroScene() {
         pathLength={1}
         d="M156 176 C 210 148, 236 148, 286 173"
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="2"
         strokeLinecap="round"
       />
@@ -225,20 +224,20 @@ export function HeroScene() {
         y="324"
         width="568"
         height="160"
-        rx="20"
-        fill="var(--brass-wash)"
-        stroke="var(--brass)"
+        rx="6"
+        fill="var(--sheet)"
+        stroke="var(--ink)"
         strokeWidth="1.5"
         strokeDasharray="5 6"
       />
-      <text x="56" y="356" fontSize="13" fontFamily={sans} fill="var(--char)">
+      <text x="56" y="356" fontSize="13" fontFamily={sans} fill="var(--ink)">
         Outside Twine
       </text>
       <Note x={470} y={392} />
       <path
         d="M470 416 C 360 448, 250 448, 150 416"
         fill="none"
-        stroke="var(--brass)"
+        stroke="var(--ink)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeDasharray="4 6"
@@ -249,7 +248,7 @@ export function HeroScene() {
         textAnchor="middle"
         fontSize="12"
         fontFamily={sans}
-        fill="var(--char)"
+        fill="var(--ink)"
       >
         Fiat
       </text>
@@ -270,7 +269,7 @@ export function TradeFigure({
       aria-hidden="true"
       className="h-auto w-full text-foreground"
     >
-      <rect width="560" height="400" rx="28" fill="var(--linen-3)" />
+      <rect width="560" height="400" rx="8" fill="var(--cloth-3)" />
       <Party cx={96} cy={188} label="Seller" />
       <Party cx={464} cy={188} label="Buyer" />
       <g style={layerStyle(step === 0, reduced)}>
@@ -296,7 +295,7 @@ export function TradeFigure({
         <path
           d="M128 188 H236"
           fill="none"
-          stroke="var(--primary)"
+          stroke="var(--fiber-ink)"
           strokeWidth="2"
           strokeLinecap="round"
         />
@@ -340,7 +339,7 @@ export function TradeFigure({
         <path
           d="M314 166 H432"
           fill="none"
-          stroke="var(--primary)"
+          stroke="var(--fiber-ink)"
           strokeWidth="2"
           strokeLinecap="round"
         />
@@ -413,13 +412,13 @@ export function HoldDiagram() {
       aria-label="Paying the buyer's invoice settles the hold. If the trade does not finish, the timelock returns the CKB to the seller's channel."
       className="mt-10 h-auto w-full max-w-2xl text-foreground"
     >
-      <rect width="640" height="300" rx="28" fill="var(--linen-3)" />
+      <rect width="640" height="300" rx="8" fill="var(--cloth-3)" />
       <rect
         x="36"
         y="78"
         width="150"
         height="92"
-        rx="16"
+        rx="6"
         fill="var(--background)"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -432,14 +431,14 @@ export function HoldDiagram() {
       <path
         d="M186 124 H286"
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="2"
         strokeLinecap="round"
       />
       <path
         d="M354 124 H452"
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="2"
         strokeLinecap="round"
       />
@@ -448,7 +447,7 @@ export function HoldDiagram() {
         y="78"
         width="150"
         height="92"
-        rx="16"
+        rx="6"
         fill="var(--background)"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -483,12 +482,12 @@ export function DeskDiagram() {
       aria-label="Traders reach the daemon over Nostr and open a Fiber channel to the hub. Push is optional."
       className="mt-10 h-auto w-full max-w-2xl text-foreground"
     >
-      <rect width="640" height="280" rx="28" fill="var(--linen-3)" />
-      <rect x="48" y="48" width="150" height="72" rx="16" fill="var(--background)" stroke="currentColor" strokeWidth="1.5" />
-      <text x="123" y="90" textAnchor="middle" fontSize="14" fontFamily={sans} fill="currentColor">
+      <rect width="640" height="280" rx="8" fill="var(--cloth-3)" />
+      <rect x="48" y="48" width="150" height="72" rx="6" fill="var(--background)" stroke="var(--fiber-ink)" strokeWidth="1.5" />
+      <text x="123" y="90" textAnchor="middle" fontSize="14" fontFamily={sans} fill="var(--fiber-ink)">
         Fiber
       </text>
-      <rect x="246" y="48" width="150" height="72" rx="16" fill="var(--background)" stroke="var(--primary)" strokeWidth="1.5" />
+      <rect x="246" y="48" width="150" height="72" rx="6" fill="var(--background)" stroke="var(--primary)" strokeWidth="1.5" />
       <text x="321" y="90" textAnchor="middle" fontSize="14" fontFamily={sans} fill="currentColor">
         Daemon
       </text>
@@ -497,7 +496,7 @@ export function DeskDiagram() {
         y="48"
         width="150"
         height="72"
-        rx="16"
+        rx="6"
         fill="var(--background)"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -514,7 +513,7 @@ export function DeskDiagram() {
         pathLength={1}
         d="M246 84 H198"
         fill="none"
-        stroke="var(--primary)"
+        stroke="var(--fiber-ink)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -542,7 +541,7 @@ export function DeskDiagram() {
       <path
         d="M200 188 C 150 160, 130 150, 123 120"
         fill="none"
-        stroke="currentColor"
+        stroke="var(--fiber-ink)"
         strokeWidth="1.5"
         strokeLinecap="round"
         opacity="0.55"
@@ -562,7 +561,7 @@ export function WalletSplit() {
       aria-label="The Twine app stores a Nostr key. The Fiber wallet holds the CKB. Twine does not keep the wallet key."
       className="h-auto w-full text-foreground"
     >
-      <rect width="250" height="240" rx="24" fill="var(--linen-3)" />
+      <rect width="250" height="240" rx="8" fill="var(--cloth-3)" />
       <text x="125" y="48" textAnchor="middle" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
         The app
       </text>
@@ -585,7 +584,7 @@ export function WalletSplit() {
       <text x="125" y="204" textAnchor="middle" fontSize="13" fontFamily={sans} fill="currentColor">
         Nostr key
       </text>
-      <rect x="310" width="250" height="240" rx="24" fill="var(--linen-3)" />
+      <rect x="310" width="250" height="240" rx="8" fill="var(--cloth-3)" />
       <text x="435" y="48" textAnchor="middle" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
         The wallet
       </text>
@@ -609,7 +608,7 @@ export function KeyMark() {
 
 export function CoinMark() {
   return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" className="size-10 text-primary">
+    <svg viewBox="0 0 40 40" aria-hidden="true" className="size-10 text-fiber">
       <circle cx="20" cy="20" r="11" fill="none" stroke="currentColor" strokeWidth="1.5" />
       <circle cx="20" cy="20" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
     </svg>
@@ -618,7 +617,7 @@ export function CoinMark() {
 
 export function NoteMark() {
   return (
-    <svg viewBox="0 0 40 40" aria-hidden="true" className="size-10 text-primary">
+    <svg viewBox="0 0 40 40" aria-hidden="true" className="size-10 text-ink">
       <rect x="10" y="8" width="20" height="24" rx="3" fill="none" stroke="currentColor" strokeWidth="1.5" />
       <path d="M15 16 H25 M15 21 H22 M15 26 H20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>

@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 import { cn } from "cn";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetClose,
@@ -15,7 +14,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { TwineLogo } from "./twine-logo";
+import { BrandWordmark } from "./brand-wordmark";
 
 const links = [
   { href: "/", label: "Home" },
@@ -26,16 +25,10 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-30 border-b border-rule bg-cloth/90 backdrop-blur-[6px]">
       <div className="shell flex h-header items-center justify-between">
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-medium tracking-tight text-foreground"
-        >
-          <TwineLogo className="size-6 text-primary" />
-          Twine
-        </Link>
-        <nav aria-label="Site" className="hidden items-center gap-5 text-sm sm:flex">
+        <BrandWordmark />
+        <nav aria-label="Site" className="hidden items-center gap-6 sm:flex">
           {links.map((link) => {
             if (link.href === "/download") {
               return (
@@ -56,8 +49,8 @@ export function SiteHeader() {
                 href={link.href}
                 aria-current={current ? "page" : undefined}
                 className={cn(
-                  "text-sm font-medium tracking-tight transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring",
-                  current ? "text-primary" : "text-muted-foreground",
+                  "font-sans text-xs font-bold tracking-[0.08em] uppercase transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cord",
+                  current ? "text-white" : "text-ink-soft hover:text-white",
                 )}
               >
                 {link.label}
@@ -72,19 +65,25 @@ export function SiteHeader() {
             <MenuIcon />
             <span className="sr-only">Open menu</span>
           </SheetTrigger>
-          <SheetContent side="right">
+          <SheetContent side="right" className="border-rule bg-cloth-2">
             <SheetHeader>
-              <SheetTitle>Twine</SheetTitle>
-              <SheetDescription>Non-custodial P2P for Nervos CKB.</SheetDescription>
+              <SheetTitle className="font-display text-2xl font-normal tracking-[-0.04em]">
+                Twine
+              </SheetTitle>
+              <SheetDescription className="font-sans text-sm text-ink-soft">
+                Non-custodial P2P for Nervos CKB.
+              </SheetDescription>
             </SheetHeader>
-            <Separator />
             <nav aria-label="Site" className="flex flex-col gap-1 px-4">
               {links.map((link) => {
                 const current = pathname === link.href;
                 const className =
                   link.href === "/download"
-                    ? cn(buttonVariants(), "mt-2 w-full")
-                    : `rounded-lg px-3 py-2 text-sm font-medium ${current ? "bg-muted text-foreground" : "text-muted-foreground"}`;
+                    ? cn(buttonVariants(), "mt-3 w-full")
+                    : cn(
+                        "px-3 py-2 font-sans text-xs font-bold tracking-[0.08em] uppercase",
+                        current ? "bg-cloth-3 text-white" : "text-ink-mid",
+                      );
                 return (
                   <SheetClose
                     key={link.href}
