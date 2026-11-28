@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DownloadBlock } from "../download-block";
+import { WalletSplit } from "../illustrations";
 import { Article, External, Steps } from "../prose";
 
 export const metadata: Metadata = {
@@ -30,7 +31,8 @@ export default function DownloadPage() {
       title="Download Twine"
       lede="The app is the desk. The wallet is separate. A trade needs both. There is no iPhone or iPad build."
     >
-      <div className="border-t border-border py-16 sm:py-20">
+      <div className="grid items-center gap-12 border-t border-border py-16 lg:grid-cols-2 sm:py-20">
+        <WalletSplit />
         <DownloadBlock />
       </div>
 

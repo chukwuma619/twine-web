@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { DeskDiagram } from "../illustrations";
 import { Article, External, textLink } from "../prose";
 
 export const metadata: Metadata = {
@@ -39,6 +40,7 @@ export default function Run() {
           process. Traders never connect to the daemon directly. They reach it
           through Nostr, and they open a Fiber channel to your node.
         </p>
+        <DeskDiagram />
         <dl className="mt-10 max-w-2xl divide-y divide-border border-t border-border">
           {pieces.map((piece) => (
             <div

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 import { DeviceDownload } from "./device-download";
 import { latestDownloads } from "./releases";
 
@@ -17,6 +18,6 @@ async function DownloadFiles() {
 
 function DownloadFallback() {
   return (
-    <span className="inline-flex h-12 w-44 items-center rounded-lg bg-muted" />
+    <Skeleton className="h-12 w-44 rounded-lg" />
   );
 }

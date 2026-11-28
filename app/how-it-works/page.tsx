@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Article, Role, Steps, textLink } from "../prose";
+import { SequenceMap } from "../illustrations";
+import { Article, Steps, textLink } from "../prose";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "How a trade works",
@@ -38,25 +45,36 @@ export default function HowItWorks() {
       title="How a trade works"
       lede="Sellers list CKB. A buyer takes some or all of a listing, inside the minimum and maximum. One person pays the other in fiat. Fiber moves the CKB."
     >
-      <div className="grid gap-10 border-t border-border py-16 md:grid-cols-2 md:gap-0 sm:py-20">
-        <Role title="If you are selling">
-          Post how much CKB you will sell, the price, a currency, a minimum
-          and maximum, and how you want to be paid. When someone takes it,
-          lock the coins from your Fiber wallet, send your account in the
-          chat, and release when the transfer arrives.
-        </Role>
-        <Role title="If you are buying" divided>
-          Choose a listing and an amount inside its limits. Paste a Fiber
-          invoice for the wallet that should receive the CKB. Pay the seller
-          yourself, put the receipt in the chat, and mark it sent. Their
-          release pays that invoice.
-        </Role>
+      <div className="grid gap-4 border-t border-border py-16 md:grid-cols-2 sm:py-20">
+        <Card>
+          <CardHeader>
+            <CardTitle>If you are selling</CardTitle>
+            <CardDescription className="leading-6">
+              Post how much CKB you will sell, the price, a currency, a minimum
+              and maximum, and how you want to be paid. When someone takes it,
+              lock the coins from your Fiber wallet, send your account in the
+              chat, and release when the transfer arrives.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>If you are buying</CardTitle>
+            <CardDescription className="leading-6">
+              Choose a listing and an amount inside its limits. Paste a Fiber
+              invoice for the wallet that should receive the CKB. Pay the seller
+              yourself, put the receipt in the chat, and mark it sent. Their
+              release pays that invoice.
+            </CardDescription>
+          </CardHeader>
+        </Card>
       </div>
 
       <section className="border-t border-border py-16 sm:py-20">
         <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           The sequence
         </h2>
+        <SequenceMap />
         <Steps items={tradeSteps} />
       </section>
 

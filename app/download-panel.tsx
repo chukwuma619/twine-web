@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { Button } from "@/components/ui/button";
 import {
   downloadPlatforms,
   platformFromAgent,
@@ -9,9 +10,6 @@ import {
   type DownloadPlatform,
   type VisitorPlatform,
 } from "./platform";
-
-const buttonClass =
-  "inline-flex h-12 items-center rounded-lg bg-primary px-5 text-base font-medium text-primary-foreground transition-[background-color,transform] duration-150 ease-out hover:bg-[color-mix(in_srgb,var(--primary-foreground)_14%,var(--primary))] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring";
 
 export function DownloadPanel({
   initialPlatform,
@@ -193,13 +191,18 @@ function OtherDownloads({
 
 function DownloadLink({ file }: { file: DownloadFile }) {
   return (
-    <a
-      href={file.href}
-      download={file.href.startsWith("/") ? "Twine.apk" : undefined}
-      className={buttonClass}
+    <Button
+      nativeButton={false}
+      render={
+        <a
+          href={file.href}
+          download={file.href.startsWith("/") ? "Twine.apk" : undefined}
+        />
+      }
+      className="h-12 px-5 text-base"
     >
       Download for {platformName(file.platform)}
-    </a>
+    </Button>
   );
 }
 

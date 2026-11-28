@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Article, Callout, textLink } from "../prose";
+import { HoldDiagram } from "../illustrations";
+import { Article, textLink } from "../prose";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 export const metadata: Metadata = {
   title: "Who holds the money",
@@ -55,17 +57,17 @@ export default function Security() {
           the seller&apos;s channel. The channel can stay locked longer than
           the trade window below. Twine does not set that unlock.
         </p>
+        <HoldDiagram />
       </div>
 
       <section className="border-t border-border py-16 sm:py-20">
         <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           The clocks
         </h2>
-        <Callout className="mt-10">
-          <p className="font-medium text-foreground">
-            One hour to lock. Forty-eight hours on the hold.
-          </p>
-          <ul className="mt-3 flex flex-col gap-2 text-sm leading-6 text-muted-foreground">
+        <Alert className="mt-10 max-w-2xl px-4 py-4">
+          <AlertTitle>One hour to lock. Forty-eight hours on the hold.</AlertTitle>
+          <AlertDescription>
+          <ul className="mt-1 flex flex-col gap-2 leading-6">
             <li>
               The seller has 1 hour to lock the coins. After that, the listing
               is free again.
@@ -83,7 +85,8 @@ export default function Security() {
               release. A dispute does not pause the hold.
             </li>
           </ul>
-        </Callout>
+          </AlertDescription>
+        </Alert>
       </section>
 
       <section className="border-t border-border py-16 sm:py-20">

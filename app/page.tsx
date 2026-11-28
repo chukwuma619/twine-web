@@ -1,41 +1,25 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { DownloadBlock } from "./download-block";
-import { Callout, textLink } from "./prose";
+import { questions } from "./faq-items";
+import { CoinMark, HeroScene, KeyMark, NoteMark } from "./illustrations";
+import { FaqList, textLink } from "./prose";
+import { TradeStory } from "./trade-story";
 import { TwineLogo } from "./twine-logo";
-
-const readNext = [
-  {
-    href: "/how-it-works",
-    title: "How a trade works",
-    body: "Post, take, lock, pay, and release. What each person does.",
-  },
-  {
-    href: "/security",
-    title: "Who holds the money",
-    body: "Your key, the Fiber hold, the clocks, and what a dispute can do.",
-  },
-  {
-    href: "/download",
-    title: "What you need",
-    body: "The app, and the Fiber wallet a trade actually uses.",
-  },
-  {
-    href: "/run",
-    title: "Run a desk",
-    body: "The coordinator is open source. Anyone can host one.",
-  },
-  {
-    href: "/faq",
-    title: "Questions",
-    body: "Who you pay, a failed release, fees, and the missing iPhone app.",
-  },
-];
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 const tradeSteps = [
   {
     title: "Post",
-    body: "A seller lists CKB: a price, a currency, how much is for sale, and a minimum and maximum.",
+    body: "A seller lists CKB: a price, a currency, how much is for sale, and a minimum and maximum. Account details stay off the listing.",
   },
   {
     title: "Take",
@@ -43,15 +27,41 @@ const tradeSteps = [
   },
   {
     title: "Lock",
-    body: "The seller pays a hold invoice from their own Fiber wallet. Twine does not have their key.",
+    body: "The seller pays a hold invoice from their own Fiber wallet. Twine does not have their key. An unpaid hold expires after one hour.",
   },
   {
     title: "Pay",
-    body: "The seller sends account details in the chat. The buyer pays that account outside Twine and marks it sent.",
+    body: "The seller sends account details in the encrypted chat. The buyer pays that account outside Twine, adds a receipt, and marks it sent.",
   },
   {
     title: "Release",
-    body: "The seller checks the money and releases. Twine pays the buyer's invoice. The buyer receives the CKB.",
+    body: "The seller checks the money and releases. Twine pays the buyer's invoice. That payment settles the hold, and the buyer receives the CKB.",
+  },
+];
+
+const homeQuestions = [
+  "Who am I paying?",
+  "Can Twine spend the locked CKB?",
+  "What if I pay and they don't release?",
+  "Does Twine charge a fee?",
+].flatMap((question) => questions.filter((item) => item.q === question));
+
+const limits = [
+  {
+    title: "A Nostr key is the account",
+    body: "No username, no email, and no identity document. The app stores the key. Twine does not keep another copy.",
+  },
+  {
+    title: "The chat stays with the two traders",
+    body: "It is encrypted between them. The coordinator cannot read the account details or the receipt.",
+  },
+  {
+    title: "No fee, no rating, no bond",
+    body: "This software charges no trading fee, keeps no rating, and takes no bond.",
+  },
+  {
+    title: "The order book is in the app",
+    body: "This site explains the desk and hosts the download. It does not list live orders.",
   },
 ];
 
@@ -59,33 +69,43 @@ export default function Home() {
   return (
     <main id="top" className="flex-1">
       <div className="mx-auto w-full max-w-5xl px-6">
-        <section className="py-16 sm:py-24">
-          <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-            <TwineLogo className="size-4 text-primary" />
-            Twine
-          </p>
-          <h1 className="mt-4 max-w-3xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl">
-            Non-custodial P2P for Nervos CKB on Nostr and Fiber.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-            Twine is a peer-to-peer desk for buying and selling CKB with local
-            fiat. Orders, encrypted chat, and trade actions run over Nostr.
-            The order book lives in the app.
-          </p>
-          <Callout className="mt-8">
-            <p className="text-lg leading-7 font-medium text-foreground">
-              Twine never holds the fiat, and it never holds a key that can
-              spend the locked CKB.
+        <section className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
+          <div>
+            <Badge variant="secondary" className="gap-1.5">
+              <TwineLogo className="size-3.5 text-primary" />
+              Twine
+            </Badge>
+            <h1 className="mt-4 max-w-xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl">
+              Non-custodial P2P for Nervos CKB.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
+              Buy and sell CKB with local fiat. Orders, encrypted chat, and
+              trade actions run over Nostr. The seller locks the coins in
+              their own Fiber channel.
             </p>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              If a trade fails or times out, Fiber&apos;s timelock returns the
-              CKB to the seller&apos;s channel. If a buyer cannot receive yet,
-              Twine opens a channel to them at payout.
-            </p>
-          </Callout>
-          <div className="mt-10">
-            <DownloadBlock />
+            <Alert className="mt-8 max-w-xl px-4 py-4">
+              <AlertTitle className="text-lg leading-7">
+                Twine never holds the fiat, and it never holds a key that can
+                spend the locked CKB.
+              </AlertTitle>
+              <AlertDescription className="text-sm leading-6">
+                If a trade does not finish, Fiber&apos;s timelock returns the
+                CKB to the seller&apos;s channel.
+              </AlertDescription>
+            </Alert>
+            <div className="mt-10">
+              <DownloadBlock />
+            </div>
+            <Button
+              variant="link"
+              nativeButton={false}
+              render={<a href="#trade" />}
+              className="mt-4 h-auto px-0"
+            >
+              How a trade moves
+            </Button>
           </div>
+          <HeroScene />
         </section>
 
         <section className="border-t border-border py-16 sm:py-20">
@@ -93,23 +113,35 @@ export default function Home() {
           <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Three things stay outside Twine.
           </h2>
-          <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0">
-            <Fact title="Your key">
-              The app stores a Nostr key. That key is the account. There is no
-              username. The app stores no Fiber key and pays no invoice.
+          <div className="mt-12 grid gap-4 md:grid-cols-3">
+            <Fact title="Your key" icon={<KeyMark />}>
+              The app stores a Nostr key. That key is the account. The app
+              stores no Fiber key and pays no invoice.
             </Fact>
-            <Fact title="The coins" divided>
+            <Fact title="The coins" icon={<CoinMark />}>
               The seller locks CKB in their own Fiber channel. Paying the
               buyer&apos;s invoice is what settles the hold.
             </Fact>
-            <Fact title="The fiat" divided>
+            <Fact title="The fiat" icon={<NoteMark />}>
               You pay the other person yourself. Twine shows the account they
               typed. It does not send the transfer, and it cannot reverse one.
             </Fact>
           </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            {limits.map((item) => (
+              <Card key={item.title} className="rise">
+                <CardHeader>
+                  <CardTitle>{item.title}</CardTitle>
+                  <CardDescription className="leading-6">
+                    {item.body}
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
         </section>
 
-        <section className="border-t border-border py-16 sm:py-20">
+        <section id="trade" className="scroll-mt-20 border-t border-border py-16 sm:py-20">
           <p className="text-sm font-medium text-muted-foreground">A trade</p>
           <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Five steps. One listing, taken in slices.
@@ -119,18 +151,8 @@ export default function Home() {
             maximum. More than one trade can be open on a listing while CKB
             remains.
           </p>
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
-            {tradeSteps.map((step, index) => (
-              <li key={step.title}>
-                <p className="font-mono text-sm text-primary">{index + 1}</p>
-                <h3 className="mt-2 font-medium text-foreground">{step.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {step.body}
-                </p>
-              </li>
-            ))}
-          </ol>
-          <p className="mt-10 text-sm leading-6 text-muted-foreground">
+          <TradeStory steps={tradeSteps} />
+          <p className="mt-4 text-sm leading-6 text-muted-foreground">
             <Link href="/how-it-works" className={textLink}>
               The full sequence
             </Link>
@@ -144,25 +166,35 @@ export default function Home() {
         </section>
 
         <section className="border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-muted-foreground">Read next</p>
+          <p className="text-sm font-medium text-muted-foreground">Questions</p>
           <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
-            The rest of the site.
+            Before you download.
           </h2>
-          <dl className="mt-10 max-w-2xl divide-y divide-border border-t border-border">
-            {readNext.map((page) => (
-              <div
-                key={page.href}
-                className="grid gap-2 py-5 sm:grid-cols-[11rem_1fr] sm:gap-8"
-              >
-                <dt>
-                  <Link href={page.href} className={textLink}>
-                    {page.title}
-                  </Link>
-                </dt>
-                <dd className="text-sm leading-6 text-muted-foreground">{page.body}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="mt-10">
+            <FaqList items={homeQuestions} />
+          </div>
+          <p className="mt-8 text-sm leading-6">
+            <Link href="/faq" className={textLink}>
+              All questions
+            </Link>
+          </p>
+        </section>
+
+        <section className="border-t border-border py-16 sm:py-24">
+          <p className="text-sm font-medium text-muted-foreground">Operators</p>
+          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
+            The app ships with one desk. You can run another.
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+            The coordinator is open source. Running it still does not give you
+            the seller&apos;s key or the buyer&apos;s secret. Fiat still moves
+            between the two traders.
+          </p>
+          <p className="mt-8 text-sm leading-6">
+            <Link href="/run" className={textLink}>
+              What a desk runs
+            </Link>
+          </p>
         </section>
       </div>
     </main>
@@ -171,23 +203,20 @@ export default function Home() {
 
 function Fact({
   title,
+  icon,
   children,
-  divided = false,
 }: {
   title: string;
+  icon: ReactNode;
   children: ReactNode;
-  divided?: boolean;
 }) {
   return (
-    <div
-      className={
-        divided
-          ? "border-t border-border pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-8"
-          : "md:pr-8"
-      }
-    >
-      <h3 className="font-medium text-foreground">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{children}</p>
-    </div>
+    <Card className="rise">
+      <CardHeader>
+        {icon}
+        <CardTitle>{title}</CardTitle>
+        <CardDescription className="leading-6">{children}</CardDescription>
+      </CardHeader>
+    </Card>
   );
 }

@@ -1,4 +1,11 @@
 import type { ReactNode } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
 
 export const textLink =
   "font-medium text-foreground underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring";
@@ -21,7 +28,7 @@ export function Article({
     <main className="flex-1">
       <div className="mx-auto w-full max-w-5xl px-6">
         <header className="max-w-3xl py-16 sm:py-20">
-          <p className="text-sm font-medium text-muted-foreground">{kicker}</p>
+          <Badge variant="secondary">{kicker}</Badge>
           <h1 className="mt-3 text-4xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-5xl">
             {title}
           </h1>
@@ -63,29 +70,6 @@ export function Section({
       </h2>
       {children}
     </section>
-  );
-}
-
-export function Role({
-  title,
-  children,
-  divided = false,
-}: {
-  title: string;
-  children: ReactNode;
-  divided?: boolean;
-}) {
-  return (
-    <div
-      className={
-        divided
-          ? "border-t border-border pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-10"
-          : "md:pr-10"
-      }
-    >
-      <h3 className="font-medium text-foreground">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-muted-foreground">{children}</p>
-    </div>
   );
 }
 
@@ -142,39 +126,17 @@ export function External({ href, children }: { href: string; children: ReactNode
   );
 }
 
-export function Callout({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={`max-w-2xl border-l-2 border-primary pl-5 ${className}`}>
-      {children}
-    </div>
-  );
-}
-
 export function FaqList({ items }: { items: { q: string; a: ReactNode }[] }) {
   return (
-    <div className="max-w-2xl divide-y divide-border border-y border-border">
+    <Accordion multiple className="max-w-2xl">
       {items.map((item) => (
-        <details key={item.q} className="group py-4">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 rounded-sm font-medium text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring [&::-webkit-details-marker]:hidden">
-            {item.q}
-            <span
-              aria-hidden
-              className="mt-0.5 font-mono text-muted-foreground transition-transform duration-150 ease-out group-open:rotate-45"
-            >
-              +
-            </span>
-          </summary>
-          <div className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
+        <AccordionItem key={item.q} value={item.q}>
+          <AccordionTrigger className="text-base">{item.q}</AccordionTrigger>
+          <AccordionContent className="max-w-xl leading-6 text-muted-foreground">
             {item.a}
-          </div>
-        </details>
+          </AccordionContent>
+        </AccordionItem>
       ))}
-    </div>
+    </Accordion>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import "./globals.css";
@@ -31,9 +32,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
     >
       <body className="flex min-h-full flex-col tabular-nums">
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <TooltipProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </TooltipProvider>
       </body>
     </html>
   );
