@@ -1,19 +1,347 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Fiber's field: #0a0a0a, white, #858585, hairline #272727. Nostr purple is the only hue. */
 
 :root {
-  --background: #f3efe6;
-  --foreground: #1a1423;
+  --cloth: #0a0a0a;
+  --cloth-2: #171717;
+  --cloth-3: #1e1e1e;
+  --sheet: #171717;
+  --ink: #ffffff;
+  --ink-soft: #858585;
+  --ink-mid: #bababa;
+  --cord: #8d45ff;
+  --cord-hot: #a36bff;
+  --cord-wash: #2a1848;
+  --fiber: #ffffff;
+  --fiber-ink: #bababa;
+  --fiber-wash: #171717;
+  --night: #0a0a0a;
+  --night-mid: #171717;
+  --night-line: #272727;
+  --strand: #3a3a3a;
+  --rule: #272727;
+  --held: #ffffff;
+  --held-wash: #171717;
+  --cut: #ff6568;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --background: var(--cloth);
+  --foreground: var(--ink);
+  --card: var(--sheet);
+  --card-foreground: var(--ink);
+  --popover: var(--sheet);
+  --popover-foreground: var(--ink);
+  --primary: var(--cord);
+  --primary-foreground: var(--sheet);
+  --primary-hover: var(--cord-hot);
+  --secondary: var(--cloth-3);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cloth-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--cord-wash);
+  --accent-foreground: var(--cord);
+  --highlight: var(--fiber);
+  --highlight-foreground: var(--night);
+  --success: var(--held);
+  --success-foreground: var(--held);
+  --success-wash: var(--held-wash);
+  --destructive: var(--cut);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--cord);
+  --chart-1: var(--cord);
+  --chart-2: var(--fiber);
+  --chart-3: var(--night);
+  --chart-4: var(--ink-soft);
+  --chart-5: var(--held);
+  --radius: 0px;
+  --sidebar: var(--cloth-2);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--cord);
+  --sidebar-primary-foreground: var(--sheet);
+  --sidebar-accent: var(--cloth-3);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: color-mix(in srgb, var(--ink) 14%, transparent);
+  --sidebar-ring: var(--cord);
+}
+
+.dark {
+  --background: var(--night);
+  --foreground: var(--cloth);
+  --card: var(--night-mid);
+  --card-foreground: var(--cloth);
+  --popover: var(--night-mid);
+  --popover-foreground: var(--cloth);
+  --primary: var(--cord);
+  --primary-foreground: var(--ink);
+  --primary-hover: var(--cord-hot);
+  --secondary: var(--cloth-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cloth-2);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--cord-wash);
+  --accent-foreground: var(--ink);
+  --success: var(--ink);
+  --destructive: var(--cut);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--cord);
+  --chart-1: var(--cord);
+  --chart-2: var(--ink);
+  --chart-3: var(--cloth-2);
+  --chart-4: var(--held);
+  --chart-5: var(--cut);
+  --sidebar: var(--night);
+  --sidebar-foreground: var(--cloth);
+  --sidebar-primary: var(--cord);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: var(--cloth-2);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--rule);
+  --sidebar-ring: var(--cord);
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-cloth: var(--cloth);
+  --color-cloth-2: var(--cloth-2);
+  --color-cloth-3: var(--cloth-3);
+  --color-sheet: var(--sheet);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mid: var(--ink-mid);
+  --color-cord: var(--cord);
+  --color-cord-hot: var(--cord-hot);
+  --color-cord-wash: var(--cord-wash);
+  --color-fiber: var(--fiber);
+  --color-fiber-ink: var(--fiber-ink);
+  --color-fiber-wash: var(--fiber-wash);
+  --color-night: var(--night);
+  --color-night-mid: var(--night-mid);
+  --color-night-line: var(--night-line);
+  --color-strand: var(--strand);
+  --color-rule: var(--rule);
+  --color-held: var(--held);
+  --color-held-wash: var(--held-wash);
+  --color-cut: var(--cut);
+  --font-sans: var(--font-ui-face), Inter, ui-sans-serif, sans-serif;
+  --font-heading: var(--font-display-face), "Atkinson Hyperlegible", ui-sans-serif, sans-serif;
+  --font-display: var(--font-display-face), "Atkinson Hyperlegible", ui-sans-serif, sans-serif;
+  --font-body: var(--font-ui-face), Inter, ui-sans-serif, sans-serif;
+  --font-mono: var(--font-mono-face), "IBM Plex Mono", ui-monospace, monospace;
+  --spacing-header: 4rem;
+  --color-primary-hover: var(--primary-hover);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-wash: var(--success-wash);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+  --ease-out-strong: var(--ease-out);
+  --ease-in-out-strong: var(--ease-in-out);
+  --ease-draw: var(--ease-drawer);
+}
+
+html {
+  background: var(--cloth);
+  color: var(--ink);
+  scroll-padding-top: var(--spacing-header);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), sans-serif;
+  background-color: var(--cloth);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  min-height: 100%;
+}
+
+::selection {
+  background: var(--cord-wash);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cord);
+  outline-offset: 3px;
+}
+
+.pressable {
+  transition: transform 140ms var(--ease-out);
+}
+
+.pressable:active {
+  transform: scale(0.98);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1 {
+    font-family: var(--font-display), "Atkinson Hyperlegible", sans-serif;
+  }
+  h2,
+  h3,
+  .font-heading {
+    font-family: var(--font-heading), var(--font-sans), sans-serif;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6;
+  }
+
+  .display {
+    max-width: 11em;
+    font-family: var(--font-display), "Atkinson Hyperlegible", sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 400;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+
+  .section-title {
+    @apply mt-3 max-w-xl font-display text-3xl leading-[1.1] font-normal tracking-[-0.035em] text-pretty text-foreground sm:text-4xl;
+  }
+
+  .lede {
+    max-width: 38rem;
+    font-family: var(--font-sans), Inter, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink-soft);
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans), Inter, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .text-link {
+    @apply font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring;
+  }
+
+  .section {
+    @apply scroll-mt-[calc(var(--spacing-header)+0.75rem)] border-t border-rule py-16 sm:py-24;
+  }
+
+  .surface-inverse .lede {
+    color: var(--ink-soft);
+  }
+
+  .surface-inverse {
+    background-color: var(--cloth-2);
+    color: var(--ink);
+  }
+}
+
+@keyframes twine-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes twine-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: twine-draw 1.15s var(--ease-out) both;
+  }
+
+  .hero-draw-late {
+    animation-delay: 0.28s;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rise {
+      animation: twine-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 34%;
+    }
+
+    .scroll-draw {
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      animation: twine-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 12% cover 46%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-draw,
+  .scroll-draw {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
