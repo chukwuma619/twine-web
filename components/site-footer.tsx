@@ -18,8 +18,7 @@ export function SiteFooter() {
         <div className="max-w-sm">
           <BrandWordmark />
           <p className="mt-4 font-sans text-sm leading-relaxed text-ink-soft">
-            Orders are public Nostr events. The coordinator is open source, so
-            anyone can run a desk. The app ships with one already filled in.
+            Non-custodial P2P for Nervos CKB.
           </p>
         </div>
         <div className="flex flex-col gap-6 sm:items-end">
