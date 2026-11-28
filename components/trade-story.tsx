@@ -60,7 +60,7 @@ export function TradeStory({
           {steps.map((step, index) => (
             <span
               key={step.title}
-              className={`h-1 flex-1 rounded-full ${index <= active ? "bg-primary" : "bg-border"}`}
+              className={`h-1 flex-1 rounded-full ${index === active ? "bg-brass" : index < active ? "bg-thread" : "bg-grain"}`}
             />
           ))}
         </div>
@@ -89,7 +89,7 @@ export function TradeStory({
                   {index + 1}
                 </span>
                 {index === steps.length - 1 ? null : (
-                  <span className="my-2 w-px flex-1 bg-border" />
+                  <span className="my-2 w-px flex-1 bg-grain" />
                 )}
               </div>
               <div className="pb-10">

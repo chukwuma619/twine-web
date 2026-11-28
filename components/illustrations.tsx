@@ -177,7 +177,7 @@ export function HeroScene() {
       aria-label="CKB sits in a Fiber hold between the seller and the buyer. Fiat moves outside that hold."
       className="h-auto w-full text-foreground"
     >
-      <rect width="640" height="520" rx="28" fill="var(--muted)" />
+      <rect width="640" height="520" rx="28" fill="var(--linen-3)" />
       <rect
         x="36"
         y="36"
@@ -226,24 +226,22 @@ export function HeroScene() {
         width="568"
         height="160"
         rx="20"
-        fill="none"
-        stroke="currentColor"
+        fill="var(--brass-wash)"
+        stroke="var(--brass)"
         strokeWidth="1.5"
         strokeDasharray="5 6"
-        opacity="0.4"
       />
-      <text x="56" y="356" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
+      <text x="56" y="356" fontSize="13" fontFamily={sans} fill="var(--char)">
         Outside Twine
       </text>
       <Note x={470} y={392} />
       <path
         d="M470 416 C 360 448, 250 448, 150 416"
         fill="none"
-        stroke="currentColor"
+        stroke="var(--brass)"
         strokeWidth="1.5"
         strokeLinecap="round"
         strokeDasharray="4 6"
-        opacity="0.7"
       />
       <text
         x="300"
@@ -251,7 +249,7 @@ export function HeroScene() {
         textAnchor="middle"
         fontSize="12"
         fontFamily={sans}
-        fill="var(--muted-foreground)"
+        fill="var(--char)"
       >
         Fiat
       </text>
@@ -272,7 +270,7 @@ export function TradeFigure({
       aria-hidden="true"
       className="h-auto w-full text-foreground"
     >
-      <rect width="560" height="400" rx="28" fill="var(--muted)" />
+      <rect width="560" height="400" rx="28" fill="var(--linen-3)" />
       <Party cx={96} cy={188} label="Seller" />
       <Party cx={464} cy={188} label="Buyer" />
       <g style={layerStyle(step === 0, reduced)}>
@@ -415,7 +413,7 @@ export function HoldDiagram() {
       aria-label="Paying the buyer's invoice settles the hold. If the trade does not finish, the timelock returns the CKB to the seller's channel."
       className="mt-10 h-auto w-full max-w-2xl text-foreground"
     >
-      <rect width="640" height="300" rx="28" fill="var(--muted)" />
+      <rect width="640" height="300" rx="28" fill="var(--linen-3)" />
       <rect
         x="36"
         y="78"
@@ -485,7 +483,7 @@ export function DeskDiagram() {
       aria-label="Traders reach the daemon over Nostr and open a Fiber channel to the hub. Push is optional."
       className="mt-10 h-auto w-full max-w-2xl text-foreground"
     >
-      <rect width="640" height="280" rx="28" fill="var(--muted)" />
+      <rect width="640" height="280" rx="28" fill="var(--linen-3)" />
       <rect x="48" y="48" width="150" height="72" rx="16" fill="var(--background)" stroke="currentColor" strokeWidth="1.5" />
       <text x="123" y="90" textAnchor="middle" fontSize="14" fontFamily={sans} fill="currentColor">
         Fiber
@@ -564,7 +562,7 @@ export function WalletSplit() {
       aria-label="The Twine app stores a Nostr key. The Fiber wallet holds the CKB. Twine does not keep the wallet key."
       className="h-auto w-full text-foreground"
     >
-      <rect width="250" height="240" rx="24" fill="var(--muted)" />
+      <rect width="250" height="240" rx="24" fill="var(--linen-3)" />
       <text x="125" y="48" textAnchor="middle" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
         The app
       </text>
@@ -587,7 +585,7 @@ export function WalletSplit() {
       <text x="125" y="204" textAnchor="middle" fontSize="13" fontFamily={sans} fill="currentColor">
         Nostr key
       </text>
-      <rect x="310" width="250" height="240" rx="24" fill="var(--muted)" />
+      <rect x="310" width="250" height="240" rx="24" fill="var(--linen-3)" />
       <text x="435" y="48" textAnchor="middle" fontSize="13" fontFamily={sans} fill="var(--muted-foreground)">
         The wallet
       </text>

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { textLink } from "./prose";
 
 export const questions: { q: string; a: ReactNode }[] = [
   {
@@ -40,7 +39,7 @@ export const questions: { q: string; a: ReactNode }[] = [
     a: (
       <>
         Yes. The coordinator is open source.{" "}
-        <Link href="/run" className={textLink}>
+        <Link href="/run" >
           Run a desk
         </Link>{" "}
         says what that machine does, and what it still cannot do.

@@ -15,14 +15,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { navLink } from "./prose";
 import { TwineLogo } from "./twine-logo";
 
 const links = [
-  { href: "/how-it-works", label: "How it works" },
-  { href: "/security", label: "Security" },
-  { href: "/run", label: "Run a desk" },
-  { href: "/faq", label: "Questions" },
+  { href: "/", label: "Home" },
   { href: "/download", label: "Download" },
 ];
 
@@ -59,7 +55,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={current ? "page" : undefined}
-                className={`${navLink} ${current ? "text-foreground" : ""}`}
+                className={`text-sm font-medium tracking-tight text-foreground ${current ? "text-foreground" : ""}`}
               >
                 {link.label}
               </Link>

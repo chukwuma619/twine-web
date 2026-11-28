@@ -1,10 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { questions } from "./faq-items";
-import { CoinMark, HeroScene, KeyMark, NoteMark } from "./illustrations";
-import { FaqList, textLink } from "./prose";
-import { TradeStory } from "./trade-story";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { questions } from "../components/faq-items";
+import { CoinMark, HeroScene, KeyMark, NoteMark } from "../components/illustrations";
+import { TradeStory } from "../components/trade-story";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -55,6 +53,7 @@ const limits = [
   {
     title: "No fee, no rating, no bond",
     body: "This software charges no trading fee, keeps no rating, and takes no bond.",
+    good: true,
   },
   {
     title: "The order book is in the app",
@@ -78,7 +77,7 @@ export default function Home() {
             </p>
             <div className="mt-10">
               <Link href="/download">
-                <Button>Download</Button>
+                <Button size={"lg"}>Download</Button>
               </Link>
             </div>
           </div>
@@ -86,7 +85,7 @@ export default function Home() {
         </section>
 
         <section className="border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-muted-foreground">The desk</p>
+          <p className="text-sm font-medium text-thread">The desk</p>
           <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Three things stay outside Twine.
           </h2>
@@ -106,9 +105,18 @@ export default function Home() {
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
             {limits.map((item) => (
-              <Card key={item.title} className="rise">
+              <Card
+                key={item.title}
+                className={
+                  "good" in item
+                    ? "rise bg-verdant/10 ring-verdant/25"
+                    : "rise bg-linen-3"
+                }
+              >
                 <CardHeader>
-                  <CardTitle>{item.title}</CardTitle>
+                  <CardTitle className={"good" in item ? "text-verdant" : undefined}>
+                    {item.title}
+                  </CardTitle>
                   <CardDescription className="leading-6">
                     {item.body}
                   </CardDescription>
@@ -119,7 +127,7 @@ export default function Home() {
         </section>
 
         <section id="trade" className="scroll-mt-20 border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-muted-foreground">A trade</p>
+          <p className="text-sm font-medium text-thread">A trade</p>
           <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Five steps. One listing, taken in slices.
           </h2>
@@ -129,51 +137,32 @@ export default function Home() {
             remains.
           </p>
           <TradeStory steps={tradeSteps} />
-          <p className="mt-4 text-sm leading-6 text-muted-foreground">
-            <Link href="/how-it-works" className={textLink}>
-              The full sequence
-            </Link>
-            , including cancel and a failed payout. The clocks and the dispute
-            are on{" "}
-            <Link href="/security" className={textLink}>
-              Security
-            </Link>
-            .
-          </p>
+         
         </section>
 
-        <section className="border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-muted-foreground">Questions</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
-            Before you download.
-          </h2>
-          <div className="mt-10">
-            <FaqList items={homeQuestions} />
-          </div>
-          <p className="mt-8 text-sm leading-6">
-            <Link href="/faq" className={textLink}>
-              All questions
-            </Link>
-          </p>
-        </section>
+      </div>
 
-        <section className="border-t border-border py-16 sm:py-24">
-          <p className="text-sm font-medium text-muted-foreground">Operators</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
+      <section className="bg-umbra text-linen">
+        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:py-24">
+          <p className="text-sm font-medium text-brass">Operators</p>
+          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-linen sm:text-4xl">
             The app ships with one desk. You can run another.
           </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-linen/70">
             The coordinator is open source. Running it still does not give you
             the seller&apos;s key or the buyer&apos;s secret. Fiat still moves
             between the two traders.
           </p>
           <p className="mt-8 text-sm leading-6">
-            <Link href="/run" className={textLink}>
+            <Link
+              href="/run"
+              className="font-medium text-brass underline-offset-4 hover:underline"
+            >
               What a desk runs
             </Link>
           </p>
-        </section>
-      </div>
+        </div>
+      </section>
     </main>
   );
 }
