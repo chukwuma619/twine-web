@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { cn } from "cn";
 import { HeroScene } from "../components/illustrations";
 import { TradeStory } from "../components/trade-story";
 import { WhyTwine } from "../components/why-twine";
@@ -25,26 +24,6 @@ const tradeSteps = [
   {
     title: "Release",
     body: "The seller checks the money and releases. Twine pays the buyer's invoice. That payment settles the hold, and the buyer receives the CKB.",
-  },
-];
-
-const limits: { title: string; body: string; good?: boolean }[] = [
-  {
-    title: "The chat stays with the two traders",
-    body: "It is encrypted between them. The coordinator cannot read the account details or the receipt.",
-  },
-  {
-    title: "No fee, no rating, no bond",
-    body: "This software charges no trading fee, keeps no rating, and takes no bond.",
-    good: true,
-  },
-  {
-    title: "Running a desk adds no keys",
-    body: "It does not give you the seller's key or the buyer's secret.",
-  },
-  {
-    title: "The order book is in the app",
-    body: "This site explains the desk and hosts the download. It does not list live orders.",
   },
 ];
 
@@ -100,31 +79,6 @@ export default function Home() {
       </div>
 
       <WhyTwine />
-
-      <div className="shell">
-        <section className="section">
-          <p className="eyebrow">The desk</p>
-          <h2 className="section-title">What this desk never takes.</h2>
-          <ul className="mt-12">
-            {limits.map((item) => (
-              <li
-                key={item.title}
-                className={cn(
-                  "grid gap-2 border-b border-rule py-6 sm:grid-cols-[16rem_1fr] sm:items-baseline sm:gap-10",
-                  item.good && "border-l-2 border-l-cord pl-4",
-                )}
-              >
-                <h3 className="font-sans text-base font-semibold tracking-tight">
-                  {item.title}
-                </h3>
-                <p className="font-sans text-sm leading-relaxed text-ink-soft">
-                  {item.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
     </main>
   );
 }
