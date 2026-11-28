@@ -45,7 +45,8 @@ function Note({ x, y }: { x: number; y: number }) {
       />
       <path
         d={`M${x + 12} ${y + 18} H${x + 62} M${x + 12} ${y + 31} H${x + 44}`}
-        stroke="var(--border)"
+        fill="none"
+        stroke="var(--ink-soft)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -153,7 +154,8 @@ function ListingCard({
       </text>
       <path
         d={`M${x + 16} ${y + 48} H${x + width - 16} M${x + 16} ${y + 64} H${x + width - 52} M${x + 16} ${y + 80} H${x + width - 72}`}
-        stroke="var(--border)"
+        fill="none"
+        stroke="var(--ink-soft)"
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -211,12 +213,12 @@ export function HeroScene() {
         Hold
       </text>
       <path
-        d="M354 176 H470"
+        d="M354 176 H484"
         fill="none"
-        stroke="var(--border)"
+        stroke="var(--fiber-ink)"
         strokeWidth="2"
         strokeLinecap="round"
-        strokeDasharray="1 7"
+        strokeDasharray="4 6"
       />
       <Party cx={512} cy={176} label="Buyer" />
       <rect
@@ -278,22 +280,22 @@ export function TradeFigure({
       <g style={layerStyle(step === 1, reduced)}>
         <ListingCard x={176} y={70} title="Listing" width={150} />
         <rect
-          x="352"
-          y="118"
-          width="92"
-          height="64"
+          x="338"
+          y="122"
+          width="86"
+          height="60"
           rx="12"
           fill="var(--background)"
           stroke="var(--primary)"
           strokeWidth="1.5"
         />
-        <text x="398" y="154" textAnchor="middle" fontSize="13" fontFamily={sans} fill="currentColor">
+        <text x="381" y="156" textAnchor="middle" fontSize="13" fontFamily={sans} fill="currentColor">
           Slice
         </text>
       </g>
       <g style={layerStyle(step === 2, reduced)}>
         <path
-          d="M128 188 H236"
+          d="M124 188 H246"
           fill="none"
           stroke="var(--fiber-ink)"
           strokeWidth="2"
@@ -314,15 +316,15 @@ export function TradeFigure({
       </g>
       <g style={layerStyle(step === 3, reduced)}>
         <Lock x={246} y={112} />
+        <Note x={392} y={268} />
         <path
-          d="M432 300 C 340 332, 230 332, 150 300"
+          d="M392 292 C 320 336, 220 336, 140 292"
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeDasharray="4 6"
         />
-        <Note x={392} y={268} />
         <text
           x="250"
           y="252"
@@ -337,7 +339,7 @@ export function TradeFigure({
       <g style={layerStyle(step === 4, reduced)}>
         <Lock x={246} y={112} open />
         <path
-          d="M314 166 H432"
+          d="M314 166 H436"
           fill="none"
           stroke="var(--fiber-ink)"
           strokeWidth="2"
@@ -599,9 +601,14 @@ export function WalletSplit() {
 export function KeyMark() {
   return (
     <svg viewBox="0 0 40 40" aria-hidden="true" className="size-10 text-primary">
-      <circle cx="15" cy="16" r="7" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M20.5 19.5 32 31" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <path d="M27 26.5 30.5 30" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <circle cx="13" cy="15" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M17.6 19.6 31 33 M25 27 27.8 24.2 M28.1 30.1 30.9 27.3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

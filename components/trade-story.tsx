@@ -27,27 +27,27 @@ export function TradeStory({
   const itemRefs = useRef<Array<HTMLLIElement | null>>([]);
 
   useEffect(() => {
-    const nodes = itemRefs.current.filter((node) => node !== null);
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-        const next = visible[0];
-        if (!next) {
-          return;
+    let current = 0;
+    const sync = () => {
+      const line = window.innerHeight * 0.32;
+      let next = 0;
+      for (const [index, node] of itemRefs.current.entries()) {
+        if (node && node.getBoundingClientRect().top <= line) {
+          next = index;
         }
-        const index = Number((next.target as HTMLElement).dataset.index);
-        if (Number.isInteger(index)) {
-          setActive(index);
-        }
-      },
-      { rootMargin: "-20% 0px -55% 0px", threshold: 0 },
-    );
-    for (const node of nodes) {
-      observer.observe(node);
-    }
-    return () => observer.disconnect();
+      }
+      if (next !== current) {
+        current = next;
+        setActive(next);
+      }
+    };
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    return () => {
+      window.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", sync);
+    };
   }, [steps.length]);
 
   const current = steps[active] ?? steps[0];
@@ -76,7 +76,6 @@ export function TradeStory({
           {steps.map((step, index) => (
             <li
               key={step.title}
-              data-index={index}
               ref={(node) => {
                 itemRefs.current[index] = node;
               }}
