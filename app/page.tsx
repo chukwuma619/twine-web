@@ -122,7 +122,7 @@ export default function Home() {
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
             {tradeSteps.map((step, index) => (
               <li key={step.title}>
-                <p className="font-mono text-sm text-muted-foreground">{index + 1}</p>
+                <p className="font-mono text-sm text-primary">{index + 1}</p>
                 <h3 className="mt-2 font-medium text-foreground">{step.title}</h3>
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   {step.body}

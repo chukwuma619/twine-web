@@ -103,7 +103,7 @@ export function Step({
   return (
     <li className="grid grid-cols-[2.25rem_1fr]">
       <div className="flex flex-col items-center">
-        <span className="font-mono text-sm leading-6 text-muted-foreground">{n}</span>
+        <span className="font-mono text-sm leading-6 text-primary">{n}</span>
         {last ? null : <span className="my-2 w-px flex-1 bg-border" />}
       </div>
       <div className={last ? undefined : "pb-8"}>
@@ -150,7 +150,7 @@ export function Callout({
   className?: string;
 }) {
   return (
-    <div className={`max-w-2xl border-l-2 border-foreground pl-5 ${className}`}>
+    <div className={`max-w-2xl border-l-2 border-primary pl-5 ${className}`}>
       {children}
     </div>
   );
