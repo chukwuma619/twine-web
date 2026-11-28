@@ -26,8 +26,8 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-10 border-b border-border bg-background">
-      <div className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between px-4 sm:px-6">
+    <header className="sticky top-0 z-10 border-b border-border bg-background/95 backdrop-blur-sm">
+      <div className="shell flex h-header items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 font-medium tracking-tight text-foreground"
@@ -55,7 +55,10 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={current ? "page" : undefined}
-                className={`text-sm font-medium tracking-tight text-foreground ${current ? "text-foreground" : ""}`}
+                className={cn(
+                  "text-sm font-medium tracking-tight transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring",
+                  current ? "text-primary" : "text-muted-foreground",
+                )}
               >
                 {link.label}
               </Link>

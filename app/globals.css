@@ -18,9 +18,9 @@
   --umbra-line: #3c334c;
   --brass: #e0b04a;
   --brass-wash: #f8efd2;
-  --grain: #ddd6cc;
+  --grain: #b7ad9d;
   --verdant: #1e6b45;
-  --rust: #c2511c;
+  --rust: #b03e14;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
@@ -33,15 +33,21 @@
   --popover-foreground: var(--char);
   --primary: var(--thread);
   --primary-foreground: var(--linen);
-  --secondary: var(--linen-2);
+  --primary-hover: var(--thread-hot);
+  --secondary: var(--linen-3);
   --secondary-foreground: var(--char);
   --muted: var(--linen-2);
   --muted-foreground: var(--char-soft);
   --accent: var(--thread-wash);
-  --accent-foreground: var(--char);
+  --accent-foreground: var(--thread);
+  --highlight: var(--brass);
+  --highlight-foreground: var(--umbra);
+  --success: var(--verdant);
+  --success-foreground: var(--success);
+  --success-wash: color-mix(in srgb, var(--success) 12%, var(--background));
   --destructive: var(--rust);
   --border: color-mix(in srgb, var(--char) 12%, transparent);
-  --input: var(--grain);
+  --input: #918a81;
   --ring: var(--thread);
   --chart-1: var(--thread);
   --chart-2: var(--brass);
@@ -68,12 +74,14 @@
   --popover-foreground: var(--linen);
   --primary: var(--thread-hot);
   --primary-foreground: var(--linen);
-  --secondary: var(--umbra-mid);
+  --primary-hover: color-mix(in srgb, var(--thread-hot) 88%, white);
+  --secondary: color-mix(in srgb, var(--linen) 8%, var(--umbra-mid));
   --secondary-foreground: var(--linen);
   --muted: var(--umbra-mid);
-  --muted-foreground: color-mix(in srgb, var(--linen) 62%, transparent);
+  --muted-foreground: color-mix(in srgb, var(--linen) 70%, transparent);
   --accent: color-mix(in srgb, var(--thread-hot) 28%, var(--umbra-mid));
   --accent-foreground: var(--linen);
+  --success: color-mix(in srgb, var(--linen) 35%, var(--verdant));
   --destructive: var(--rust);
   --border: var(--umbra-line);
   --input: var(--umbra-line);
@@ -113,6 +121,13 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, sans-serif;
   --font-heading: var(--font-geist-sans), ui-sans-serif, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --spacing-header: 3.5rem;
+  --color-primary-hover: var(--primary-hover);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-success-wash: var(--success-wash);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -166,6 +181,52 @@
   html {
     @apply font-sans;
     }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-6;
+  }
+
+  .display {
+    @apply max-w-xl font-sans text-[2.75rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl sm:leading-[1.02];
+  }
+
+  .section-title {
+    @apply mt-3 max-w-xl font-sans text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl;
+  }
+
+  .lede {
+    @apply max-w-2xl text-lg leading-8 text-muted-foreground;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs font-medium tracking-[0.16em] text-primary uppercase;
+  }
+
+  .text-link {
+    @apply font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring;
+  }
+
+  .section {
+    @apply scroll-mt-[calc(var(--spacing-header)+0.75rem)] border-t border-border py-16 sm:py-24;
+  }
+
+  .surface-inverse {
+    --background: var(--umbra);
+    --foreground: var(--linen);
+    --card: var(--umbra-mid);
+    --card-foreground: var(--linen);
+    --muted: var(--umbra-mid);
+    --muted-foreground: color-mix(in srgb, var(--linen) 70%, transparent);
+    --primary: var(--brass);
+    --primary-foreground: var(--umbra);
+    --primary-hover: color-mix(in srgb, var(--brass) 86%, white);
+    --border: var(--umbra-line);
+    --ring: var(--brass);
+    background-color: var(--background);
+    color: var(--foreground);
+  }
 }
 
 @keyframes twine-draw {

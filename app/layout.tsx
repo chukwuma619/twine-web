@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
       data-scroll-behavior="smooth"
     >
-      <body className="flex min-h-full flex-col tabular-nums">
+      <body className="flex min-h-full flex-col">
         <TooltipProvider>
           <SiteHeader />
           {children}

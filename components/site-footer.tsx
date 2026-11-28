@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const footerLink =
-  "text-linen/70 underline-offset-4 hover:text-brass hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-brass";
+  "text-muted-foreground underline-offset-4 transition-colors hover:text-primary hover:underline focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring";
 
 const pages = [
     { href: "/", label: "Home" },
@@ -10,9 +10,9 @@ const pages = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-umbra-line bg-umbra">
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-10 text-sm leading-6 sm:flex-row sm:items-start sm:justify-between">
-        <p className="max-w-sm text-linen/70">
+    <footer className="surface-inverse border-t border-border">
+      <div className="shell flex flex-col gap-8 py-10 text-sm leading-6 sm:flex-row sm:items-start sm:justify-between">
+        <p className="max-w-sm text-muted-foreground">
           Orders are public Nostr events. The coordinator is open source, so
           anyone can run a desk. The app ships with one already filled in.
         </p>

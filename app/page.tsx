@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { cn } from "cn";
 import { questions } from "../components/faq-items";
 import { CoinMark, HeroScene, KeyMark, NoteMark } from "../components/illustrations";
 import { TradeStory } from "../components/trade-story";
@@ -41,7 +42,7 @@ const homeQuestions = [
   "Does Twine charge a fee?",
 ].flatMap((question) => questions.filter((item) => item.q === question));
 
-const limits = [
+const limits: { title: string; body: string; good?: boolean }[] = [
   {
     title: "A Nostr key is the account",
     body: "No username, no email, and no identity document. The app stores the key. Twine does not keep another copy.",
@@ -64,31 +65,31 @@ const limits = [
 export default function Home() {
   return (
     <main id="top" className="flex-1">
-      <div className="mx-auto w-full max-w-7xl px-6">
+      <div className="shell">
         <section className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
           <div>
-            <h1 className="mt-4 max-w-xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl">
-              Non-custodial P2P for Nervos CKB.
-            </h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
+            <h1 className="display">Non-custodial P2P for Nervos CKB.</h1>
+            <p className="lede mt-6 max-w-xl">
               Buy and sell CKB with local fiat. Orders, encrypted chat, and
               trade actions run over Nostr. The seller locks the coins in
               their own Fiber channel.
             </p>
             <div className="mt-10">
-              <Link href="/download">
-                <Button size={"lg"}>Download</Button>
-              </Link>
+              <Button
+                nativeButton={false}
+                render={<Link href="/download" />}
+                size="lg"
+              >
+                Download
+              </Button>
             </div>
           </div>
           <HeroScene />
         </section>
 
-        <section className="border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-thread">The desk</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
-            Three things stay outside Twine.
-          </h2>
+        <section className="section">
+          <p className="eyebrow">The desk</p>
+          <h2 className="section-title">Three things stay outside Twine.</h2>
           <div className="mt-12 grid gap-4 md:grid-cols-3">
             <Fact title="Your key" icon={<KeyMark />}>
               The app stores a Nostr key. That key is the account. The app
@@ -107,31 +108,30 @@ export default function Home() {
             {limits.map((item) => (
               <Card
                 key={item.title}
-                className={
-                  "good" in item
-                    ? "rise bg-verdant/10 ring-verdant/25"
-                    : "rise bg-linen-3"
-                }
+                className={cn(
+                  "rise",
+                  item.good
+                    ? "bg-success-wash ring-success/25"
+                    : "bg-secondary",
+                )}
               >
                 <CardHeader>
-                  <CardTitle className={"good" in item ? "text-verdant" : undefined}>
+                  <CardTitle className={item.good ? "text-success" : undefined}>
                     {item.title}
                   </CardTitle>
-                  <CardDescription className="leading-6">
-                    {item.body}
-                  </CardDescription>
+                  <CardDescription>{item.body}</CardDescription>
                 </CardHeader>
               </Card>
             ))}
           </div>
         </section>
 
-        <section id="trade" className="scroll-mt-20 border-t border-border py-16 sm:py-20">
-          <p className="text-sm font-medium text-thread">A trade</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
+        <section id="trade" className="section">
+          <p className="eyebrow">A trade</p>
+          <h2 className="section-title">
             Five steps. One listing, taken in slices.
           </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
+          <p className="lede mt-5">
             A buyer takes some or all of a listing, inside its minimum and
             maximum. More than one trade can be open on a listing while CKB
             remains.
@@ -142,22 +142,19 @@ export default function Home() {
 
       </div>
 
-      <section className="bg-umbra text-linen">
-        <div className="mx-auto w-full max-w-7xl px-6 py-16 sm:py-24">
-          <p className="text-sm font-medium text-brass">Operators</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-linen sm:text-4xl">
+      <section className="surface-inverse">
+        <div className="shell py-16 sm:py-24">
+          <p className="eyebrow">Operators</p>
+          <h2 className="section-title">
             The app ships with one desk. You can run another.
           </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-linen/70">
+          <p className="lede mt-5">
             The coordinator is open source. Running it still does not give you
             the seller&apos;s key or the buyer&apos;s secret. Fiat still moves
             between the two traders.
           </p>
           <p className="mt-8 text-sm leading-6">
-            <Link
-              href="/run"
-              className="font-medium text-brass underline-offset-4 hover:underline"
-            >
+            <Link href="/run" className="text-link">
               What a desk runs
             </Link>
           </p>
@@ -181,7 +178,7 @@ function Fact({
       <CardHeader>
         {icon}
         <CardTitle>{title}</CardTitle>
-        <CardDescription className="leading-6">{children}</CardDescription>
+        <CardDescription>{children}</CardDescription>
       </CardHeader>
     </Card>
   );

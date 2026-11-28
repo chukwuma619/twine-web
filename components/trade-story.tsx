@@ -60,13 +60,13 @@ export function TradeStory({
           {steps.map((step, index) => (
             <span
               key={step.title}
-              className={`h-1 flex-1 rounded-full ${index === active ? "bg-brass" : index < active ? "bg-thread" : "bg-grain"}`}
+              className={`h-1 flex-1 rounded-full ${index === active ? "bg-highlight" : index < active ? "bg-primary" : "bg-grain"}`}
             />
           ))}
         </div>
       </div>
       <div>
-        <div className="sticky top-14 z-[1] border-b border-border bg-background/95 py-3 backdrop-blur-sm lg:hidden">
+        <div className="sticky top-header z-[1] border-b border-border bg-background/95 py-3 backdrop-blur-sm lg:hidden">
           <p className="font-mono text-xs text-primary">
             {String(active + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}
           </p>
