@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { DownloadBlock } from "../download-block";
 import { WalletSplit } from "../illustrations";
 import { Article, External, Steps } from "../prose";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Download",
@@ -33,7 +33,7 @@ export default function DownloadPage() {
     >
       <div className="grid items-center gap-12 border-t border-border py-16 lg:grid-cols-2 sm:py-20">
         <WalletSplit />
-        <DownloadBlock />
+        <Button>Download</Button>
       </div>
 
       <section className="border-t border-border py-16 sm:py-20">

@@ -1,13 +1,10 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { DownloadBlock } from "./download-block";
 import { questions } from "./faq-items";
 import { CoinMark, HeroScene, KeyMark, NoteMark } from "./illustrations";
 import { FaqList, textLink } from "./prose";
 import { TradeStory } from "./trade-story";
-import { TwineLogo } from "./twine-logo";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -68,13 +65,9 @@ const limits = [
 export default function Home() {
   return (
     <main id="top" className="flex-1">
-      <div className="mx-auto w-full max-w-5xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-6">
         <section className="grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16">
           <div>
-            <Badge variant="secondary" className="gap-1.5">
-              <TwineLogo className="size-3.5 text-primary" />
-              Twine
-            </Badge>
             <h1 className="mt-4 max-w-xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl">
               Non-custodial P2P for Nervos CKB.
             </h1>
@@ -94,7 +87,7 @@ export default function Home() {
               </AlertDescription>
             </Alert>
             <div className="mt-10">
-              <DownloadBlock />
+              <Button>Download</Button>
             </div>
             <Button
               variant="link"
