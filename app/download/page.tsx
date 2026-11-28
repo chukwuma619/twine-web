@@ -30,16 +30,16 @@ export default function DownloadPage() {
       title="Download Twine"
       lede="The app is the desk. The wallet is separate. A trade needs both. There is no iPhone or iPad build."
     >
-      <div className="border-t border-outline-variant py-16 sm:py-20">
+      <div className="border-t border-border py-16 sm:py-20">
         <DownloadBlock />
       </div>
 
-      <section className="border-t border-outline-variant py-16 sm:py-20">
-        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-on-surface sm:text-4xl">
+      <section className="border-t border-border py-16 sm:py-20">
+        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           What you need
         </h2>
         <Steps items={setupSteps} />
-        <p className="mt-10 max-w-2xl text-sm leading-6 text-on-surface-variant">
+        <p className="mt-10 max-w-2xl text-sm leading-6 text-muted-foreground">
           The wallet most people use is{" "}
           <External href="https://getfiberstudio.com">Fiber Studio</External>.
           In the app, Account shows the desk&apos;s Fiber pubkey and address.

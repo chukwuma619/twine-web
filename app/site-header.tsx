@@ -16,11 +16,11 @@ export function SiteHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-10 border-b border-outline-variant bg-surface-container-low">
+    <header className="sticky top-0 z-10 border-b border-border bg-background">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 font-medium tracking-tight text-on-surface"
+          className="flex items-center gap-2 font-medium tracking-tight text-foreground"
         >
           <TwineLogo className="size-6 text-primary" />
           Twine
@@ -33,7 +33,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 aria-current={current ? "page" : undefined}
-                className={`${navLink} ${link.hideOnSmall ? "hidden sm:inline" : ""} ${current ? "text-on-surface" : ""}`}
+                className={`${navLink} ${link.hideOnSmall ? "hidden sm:inline" : ""} ${current ? "text-foreground" : ""}`}
               >
                 {link.label}
               </Link>

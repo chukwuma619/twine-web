@@ -11,7 +11,7 @@ import {
 } from "./platform";
 
 const buttonClass =
-  "inline-flex h-12 items-center rounded-xl bg-primary px-5 text-base font-medium text-on-primary transition-[background-color,transform] duration-150 ease-out hover:bg-primary-hover active:scale-[0.98] active:bg-primary-pressed focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-primary";
+  "inline-flex h-12 items-center rounded-lg bg-primary px-5 text-base font-medium text-primary-foreground transition-[background-color,transform] duration-150 ease-out hover:bg-[color-mix(in_srgb,var(--primary-foreground)_14%,var(--primary))] active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-ring";
 
 export function DownloadPanel({
   initialPlatform,
@@ -25,10 +25,10 @@ export function DownloadPanel({
   if (files.length === 0) {
     return (
       <div className="flex flex-col items-start gap-3">
-        <p className="text-lg leading-7 text-on-surface-variant">
+        <p className="text-lg leading-7 text-muted-foreground">
           Downloads are not published yet.
         </p>
-        <p className="text-sm text-on-surface-variant">
+        <p className="text-sm text-muted-foreground">
           Not available for iPhone or iPad.
         </p>
       </div>
@@ -46,11 +46,11 @@ export function DownloadPanel({
     return (
       <div className="flex flex-col items-start gap-3">
         <DownloadLink file={file} />
-        <p className="text-sm text-on-surface-variant">{fileDetail(file)}</p>
-        <p className="max-w-md text-sm leading-6 text-on-surface-variant">
+        <p className="text-sm text-muted-foreground">{fileDetail(file)}</p>
+        <p className="max-w-md text-sm leading-6 text-muted-foreground">
           {installHint(file.platform)}
         </p>
-        <p className="text-sm text-on-surface-variant">
+        <p className="text-sm text-muted-foreground">
           Not available for iPhone or iPad.
         </p>
       </div>
@@ -60,7 +60,7 @@ export function DownloadPanel({
   if (platform === "ios") {
     return (
       <div className="flex flex-col items-start gap-3">
-        <p className="max-w-md text-lg leading-7 text-on-surface-variant">
+        <p className="max-w-md text-lg leading-7 text-muted-foreground">
           Twine is not available for iPhone or iPad.
         </p>
         <DownloadChoices files={files} />
@@ -72,7 +72,7 @@ export function DownloadPanel({
     return (
       <div className="flex flex-col items-start gap-3">
         <DownloadChoices files={files} />
-        <p className="text-sm text-on-surface-variant">
+        <p className="text-sm text-muted-foreground">
           Not available for iPhone or iPad.
         </p>
       </div>
@@ -83,11 +83,11 @@ export function DownloadPanel({
   if (!file) {
     return (
       <div className="flex flex-col items-start gap-3">
-        <p className="max-w-md text-lg leading-7 text-on-surface-variant">
+        <p className="max-w-md text-lg leading-7 text-muted-foreground">
           The {platformName(platform)} download is not published yet.
         </p>
         <DownloadChoices files={files} />
-        <p className="text-sm text-on-surface-variant">
+        <p className="text-sm text-muted-foreground">
           Not available for iPhone or iPad.
         </p>
       </div>
@@ -99,14 +99,14 @@ export function DownloadPanel({
   return (
     <div className="flex flex-col items-start gap-3">
       <DownloadLink file={file} />
-      <p className="text-sm text-on-surface-variant">{fileDetail(file)}</p>
-      <p className="max-w-md text-sm leading-6 text-on-surface-variant">
+      <p className="text-sm text-muted-foreground">{fileDetail(file)}</p>
+      <p className="max-w-md text-sm leading-6 text-muted-foreground">
         {installHint(file.platform)}
       </p>
       {others.length > 0 ? (
         <OtherDownloads files={others} current={platform} />
       ) : null}
-      <p className="text-sm text-on-surface-variant">
+      <p className="text-sm text-muted-foreground">
         Not available for iPhone or iPad.
       </p>
     </div>
@@ -132,7 +132,7 @@ function DownloadChoices({ files }: { files: DownloadFile[] }) {
   });
   if (ordered.length === 0) {
     return (
-      <p className="text-lg leading-7 text-on-surface-variant">
+      <p className="text-lg leading-7 text-muted-foreground">
         Downloads are not published yet.
       </p>
     );
@@ -142,7 +142,7 @@ function DownloadChoices({ files }: { files: DownloadFile[] }) {
       {ordered.map((file) => (
         <div key={file.platform} className="flex flex-col items-start gap-2">
           <DownloadLink file={file} />
-          <p className="text-sm text-on-surface-variant">{fileDetail(file)}</p>
+          <p className="text-sm text-muted-foreground">{fileDetail(file)}</p>
         </div>
       ))}
     </>
@@ -167,7 +167,7 @@ function OtherDownloads({
     return null;
   }
   return (
-    <p className="text-sm text-on-surface-variant">
+    <p className="text-sm text-muted-foreground">
       Also for{" "}
       {ordered.map((file, index) => {
         const last = index === ordered.length - 1;
@@ -179,7 +179,7 @@ function OtherDownloads({
             <a
               href={file.href}
               download={file.href.startsWith("/") ? "Twine.apk" : undefined}
-              className="font-medium text-primary underline-offset-4 hover:underline"
+              className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               {platformName(file.platform)}
             </a>

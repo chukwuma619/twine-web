@@ -38,7 +38,7 @@ export default function HowItWorks() {
       title="How a trade works"
       lede="Sellers list CKB. A buyer takes some or all of a listing, inside the minimum and maximum. One person pays the other in fiat. Fiber moves the CKB."
     >
-      <div className="grid gap-10 border-t border-outline-variant py-16 md:grid-cols-2 md:gap-0 sm:py-20">
+      <div className="grid gap-10 border-t border-border py-16 md:grid-cols-2 md:gap-0 sm:py-20">
         <Role title="If you are selling">
           Post how much CKB you will sell, the price, a currency, a minimum
           and maximum, and how you want to be paid. When someone takes it,
@@ -53,29 +53,29 @@ export default function HowItWorks() {
         </Role>
       </div>
 
-      <section className="border-t border-outline-variant py-16 sm:py-20">
-        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-on-surface sm:text-4xl">
+      <section className="border-t border-border py-16 sm:py-20">
+        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           The sequence
         </h2>
         <Steps items={tradeSteps} />
       </section>
 
-      <section className="border-t border-outline-variant py-16 sm:py-20">
-        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-on-surface sm:text-4xl">
+      <section className="border-t border-border py-16 sm:py-20">
+        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           How you pay
         </h2>
-        <p className="mt-5 max-w-2xl leading-7 text-on-surface-variant">
+        <p className="mt-5 max-w-2xl leading-7 text-muted-foreground">
           The seller writes the account details on the trade and sends them.
           The buyer sees that text and pays it outside Twine. The listing does
           not name a bank. The chat is encrypted between the two traders. The
           coordinator cannot read it.
         </p>
-        <p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">
+        <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
           Either person can cancel while the hold is still unpaid. After the
           seller locks, cancel is refused. The coins wait for release or for
           Fiber&apos;s timelock.
         </p>
-        <p className="mt-8 text-sm leading-6 text-on-surface-variant">
+        <p className="mt-8 text-sm leading-6 text-muted-foreground">
           The hold, the clocks, and a dispute are on{" "}
           <Link href="/security" className={textLink}>
             Security

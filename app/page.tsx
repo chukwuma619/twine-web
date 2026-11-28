@@ -60,24 +60,24 @@ export default function Home() {
     <main id="top" className="flex-1">
       <div className="mx-auto w-full max-w-5xl px-6">
         <section className="py-16 sm:py-24">
-          <p className="flex items-center gap-2 text-sm font-medium text-primary">
-            <TwineLogo className="size-4" />
+          <p className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
+            <TwineLogo className="size-4 text-primary" />
             Twine
           </p>
-          <h1 className="mt-4 max-w-3xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-on-surface sm:text-6xl">
+          <h1 className="mt-4 max-w-3xl text-[2.5rem] leading-[1.05] font-semibold tracking-tight text-pretty text-foreground sm:text-6xl">
             Non-custodial P2P for Nervos CKB on Nostr and Fiber.
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-8 text-on-surface-variant">
+          <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
             Twine is a peer-to-peer desk for buying and selling CKB with local
             fiat. Orders, encrypted chat, and trade actions run over Nostr.
             The order book lives in the app.
           </p>
           <Callout className="mt-8">
-            <p className="text-lg leading-7 font-medium">
+            <p className="text-lg leading-7 font-medium text-foreground">
               Twine never holds the fiat, and it never holds a key that can
               spend the locked CKB.
             </p>
-            <p className="mt-2 text-sm leading-6">
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
               If a trade fails or times out, Fiber&apos;s timelock returns the
               CKB to the seller&apos;s channel. If a buyer cannot receive yet,
               Twine opens a channel to them at payout.
@@ -88,9 +88,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-outline-variant py-16 sm:py-20">
-          <p className="text-sm font-medium text-primary">The desk</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-4xl">
+        <section className="border-t border-border py-16 sm:py-20">
+          <p className="text-sm font-medium text-muted-foreground">The desk</p>
+          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Three things stay outside Twine.
           </h2>
           <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0">
@@ -109,12 +109,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-outline-variant py-16 sm:py-20">
-          <p className="text-sm font-medium text-primary">A trade</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-4xl">
+        <section className="border-t border-border py-16 sm:py-20">
+          <p className="text-sm font-medium text-muted-foreground">A trade</p>
+          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             Five steps. One listing, taken in slices.
           </h2>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-on-surface-variant">
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
             A buyer takes some or all of a listing, inside its minimum and
             maximum. More than one trade can be open on a listing while CKB
             remains.
@@ -122,15 +122,15 @@ export default function Home() {
           <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-6">
             {tradeSteps.map((step, index) => (
               <li key={step.title}>
-                <p className="font-mono text-sm text-primary">{index + 1}</p>
-                <h3 className="mt-2 font-medium text-on-surface">{step.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-on-surface-variant">
+                <p className="font-mono text-sm text-muted-foreground">{index + 1}</p>
+                <h3 className="mt-2 font-medium text-foreground">{step.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
                   {step.body}
                 </p>
               </li>
             ))}
           </ol>
-          <p className="mt-10 text-sm leading-6 text-on-surface-variant">
+          <p className="mt-10 text-sm leading-6 text-muted-foreground">
             <Link href="/how-it-works" className={textLink}>
               The full sequence
             </Link>
@@ -143,12 +143,12 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="border-t border-outline-variant py-16 sm:py-20">
-          <p className="text-sm font-medium text-primary">Read next</p>
-          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-on-surface sm:text-4xl">
+        <section className="border-t border-border py-16 sm:py-20">
+          <p className="text-sm font-medium text-muted-foreground">Read next</p>
+          <h2 className="mt-3 max-w-xl text-3xl leading-tight font-semibold tracking-tight text-pretty text-foreground sm:text-4xl">
             The rest of the site.
           </h2>
-          <dl className="mt-10 max-w-2xl divide-y divide-outline-variant border-t border-outline-variant">
+          <dl className="mt-10 max-w-2xl divide-y divide-border border-t border-border">
             {readNext.map((page) => (
               <div
                 key={page.href}
@@ -159,7 +159,7 @@ export default function Home() {
                     {page.title}
                   </Link>
                 </dt>
-                <dd className="text-sm leading-6 text-on-surface-variant">{page.body}</dd>
+                <dd className="text-sm leading-6 text-muted-foreground">{page.body}</dd>
               </div>
             ))}
           </dl>
@@ -182,12 +182,12 @@ function Fact({
     <div
       className={
         divided
-          ? "border-t border-outline-variant pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-8"
+          ? "border-t border-border pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-8"
           : "md:pr-8"
       }
     >
-      <h3 className="font-medium text-on-surface">{title}</h3>
-      <p className="mt-2 text-sm leading-6 text-on-surface-variant">{children}</p>
+      <h3 className="font-medium text-foreground">{title}</h3>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{children}</p>
     </div>
   );
 }

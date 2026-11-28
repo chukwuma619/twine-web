@@ -17,6 +17,6 @@ async function DownloadFiles() {
 
 function DownloadFallback() {
   return (
-    <span className="inline-flex h-12 w-44 items-center rounded-lg bg-surface-container-highest" />
+    <span className="inline-flex h-12 w-44 items-center rounded-lg bg-muted" />
   );
 }

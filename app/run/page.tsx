@@ -30,39 +30,39 @@ export default function Run() {
       title="Run a desk"
       lede="The app ships with one public desk filled in. A trader can point it at another. The coordinator is open source, so that other desk can be yours."
     >
-      <section className="border-t border-outline-variant py-16 sm:py-20">
-        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-on-surface sm:text-4xl">
+      <section className="border-t border-border py-16 sm:py-20">
+        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           What you run
         </h2>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-on-surface-variant">
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-muted-foreground">
           One machine runs a Fiber node and the daemon. Push is a separate
           process. Traders never connect to the daemon directly. They reach it
           through Nostr, and they open a Fiber channel to your node.
         </p>
-        <dl className="mt-10 max-w-2xl divide-y divide-outline-variant border-t border-outline-variant">
+        <dl className="mt-10 max-w-2xl divide-y divide-border border-t border-border">
           {pieces.map((piece) => (
             <div
               key={piece.label}
               className="grid gap-2 py-5 sm:grid-cols-[9.5rem_1fr] sm:gap-8"
             >
-              <dt className="font-medium text-on-surface">{piece.label}</dt>
-              <dd className="text-sm leading-6 text-on-surface-variant">{piece.body}</dd>
+              <dt className="font-medium text-foreground">{piece.label}</dt>
+              <dd className="text-sm leading-6 text-muted-foreground">{piece.body}</dd>
             </div>
           ))}
         </dl>
       </section>
 
-      <section className="border-t border-outline-variant py-16 sm:py-20">
-        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-on-surface sm:text-4xl">
+      <section className="border-t border-border py-16 sm:py-20">
+        <h2 className="max-w-xl text-3xl leading-tight font-semibold tracking-tight text-foreground sm:text-4xl">
           What a desk still cannot do
         </h2>
-        <p className="mt-5 max-w-2xl leading-7 text-on-surface-variant">
+        <p className="mt-5 max-w-2xl leading-7 text-muted-foreground">
           Running the software does not give you the seller&apos;s key or the
           buyer&apos;s secret. You can publish a solver. That solver can pay
           the buyer or let the hold expire. They cannot take the locked CKB
           first. Fiat still moves between the two traders, outside the desk.
         </p>
-        <p className="mt-4 max-w-2xl leading-7 text-on-surface-variant">
+        <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
           This build charges no trading fee, keeps no rating, and takes no
           bond. There is no coordinator image yet. The Fiber image is in the
           repository. The install steps are in the deploy guide, including the
@@ -76,7 +76,7 @@ export default function Run() {
             Deploy guide
           </External>
         </p>
-        <p className="mt-8 text-sm leading-6 text-on-surface-variant">
+        <p className="mt-8 text-sm leading-6 text-muted-foreground">
           What the hold allows is on{" "}
           <Link href="/security" className={textLink}>
             Security
